@@ -24,6 +24,8 @@ def setup_config(command, filename, section, vars):
 def setup_app(command, app_conf, vars):
     couchish_config = adminish.config.make_couchish_config(app_conf, 'examplesite.model')
     db = couchdb.Database(app_conf['couchish.db.url'])
-    couchish.CouchishStore(db, couchish_config).sync_views()
+    store = couchish.CouchishStore(db, couchish_config)
+    #adminish_config = adminish.config.add_initial_data(couchish_config, store)
+    store.sync_views()
 
 

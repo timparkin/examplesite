@@ -21,6 +21,16 @@ metadata:
     - name: last_name
 
 
+initial_data:
+    - username: admin
+      first_names: FIRSTNAME
+      last_name: SURNAME
+      roles:
+        - _system/administrator
+      credentials:
+        password: PASSWORD
+
+
 views:
     - type: all
 
