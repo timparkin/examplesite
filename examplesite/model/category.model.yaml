@@ -1,0 +1,13 @@
+fields:
+- name: label
+- name: keywords
+  widget:
+    type: TextArea
+
+views:
+  - type: all
+    uses: ['category.label']
+  - type: all_count
+  - name: category/category_data
+    uses: ['category.label']
+

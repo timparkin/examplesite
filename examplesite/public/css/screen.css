@@ -1,0 +1,73 @@
+body {
+  text-align: center;
+}
+
+body a {
+  color: #a1cc3a;
+  text-decoration: none;
+}
+
+body a:hover {
+  color: #a1cc3a;
+}
+
+body a:visited {
+  color: #a1cc3a;
+}
+
+body a:link {
+  color: #a1cc3a;
+}
+
+body a.selected {
+  font-weight: bold;
+}
+
+#canvas {
+  margin: 0 auto 0 auto;
+  text-align: left;
+  position: relative;
+  width: 1000px;
+}
+
+#page {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#logo {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+}
+
+#logo a img {
+  border: 0;
+}
+
+#content {
+  width: 980px;
+  font-size: 1.1em;
+}
+
+#content h1 {
+  font-family: tahoma, arial, geneva, sans;
+  font-weight: normal;
+  font-size: 1.3em;
+  margin-bottom: 1.3em;
+}
+
+#admin {
+  font-size: 1.1em;
+}
+
+#admin h1 {
+  font-family: tahoma, arial, geneva, sans;
+  font-weight: normal;
+  font-size: 1.3em;
+  margin-bottom: 1.3em;
+}
+
+.content form div {
+  padding-bottom: 0;
+}
