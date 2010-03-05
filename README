@@ -1,0 +1,5 @@
+Create a couchdb with the name 'examplesite'
+uncomment the 'addinitialdata' line in examplesite/websetup.py (this step could be a lot better)
+run ./setup-app.sh
+comment out the 'addinitialdata' line
+run ./serve.sh
