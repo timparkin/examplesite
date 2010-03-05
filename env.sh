@@ -1,3 +1,3 @@
-export PYTHONPATH=".:libs/categories:libs/adminish:libs/convertish:libs/couchdb-session:libs/couchish:libs/dottedish:libs/formish:libs/jsonish:libs/notification:libs/pagingish:libs/profiled:libs/restish:libs/schemaish:libs/secret:libs/validatish:libs/wsgiapptools:libs/httplib2:libs/Reverend:libs/oneninetwo:libs/couchutil:./libs/couchfti:./libs/sagepay:./libs/billingish"
+export PYTHONPATH=".:../categories:../adminish:../convertish:../couchdb-session:../couchish:../dottedish:../formish:../jsonish:../notification:../pagingish:../profiled:../restish:../schemaish:../secret:../validatish:../wsgiapptools:../httplib2:../Reverend:../oneninetwo:../couchutil:./../couchfti:./../sagepay:./../billingish"
 
 
