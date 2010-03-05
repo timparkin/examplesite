@@ -3,3 +3,7 @@ uncomment the 'addinitialdata' line in examplesite/websetup.py (this step could 
 run ./setup-app.sh
 comment out the 'addinitialdata' line
 run ./serve.sh
+open http://localhost:8180/admin
+login with admin:PASSWORD
+
+go make a website...
