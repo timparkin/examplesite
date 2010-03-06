@@ -1,0 +1,49 @@
+facet:
+  label: Location
+  path: location
+  model_type: category
+
+fields:
+
+- name: category
+  type: Sequence
+  attr:
+    type: Structure
+
+- name: category.*.id
+  widget:
+    type: Hidden
+
+- name: category.*.path
+  required: True
+
+- name: category.*.data
+  type: Reference
+  attr:
+    refersto: category/category_data
+  widget:
+    label: '%(label)s'
+
+views:
+  - type: all
+  - type: all_count
+  - url: category/category_data
+    uses: ['category.label']
+  - name: categorypath-rev
+    map: |
+      function (doc) {
+        if (doc.model_type == 'photo') {
+          for (var i0 in doc.location_category) {
+            emit(doc.location_category[i0].path, 'location_category.'+i0+'.path');
+          }
+        }
+      }
+  - name: by_path
+    map: |
+      function(doc) {
+          if (doc.model_type == 'facet_location') { 
+              for (c in doc.category) {
+                  emit(doc.category[c].path, doc.category[c]); 
+              }
+          }
+      }

@@ -1,0 +1,41 @@
+fields:
+    - name: menu_title
+      required: True
+
+    - name: title
+      required: True
+
+    - name: summary
+      required: True
+      widget:
+        type: TextArea
+
+    - name: body
+      required: True
+      widget:
+        type: TextArea
+        css_class: markitup
+
+    - name: date
+      required: True
+      type: Date
+      widget:
+        type: DateParts
+
+    - name: homepage_feature
+      type: Boolean
+
+
+views:
+- type: all
+- type: all_count
+- name: homepage_news
+  map: |
+      function(doc) { 
+        if (doc.homepage_feature==true) {
+            emit(doc._id,null); 
+            }
+        }
+    
+
+

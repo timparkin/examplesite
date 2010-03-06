@@ -1,0 +1,48 @@
+facet:
+  label: Subject
+  path: subject
+  model_type: category
+
+fields:
+
+- name: category
+  type: Sequence
+  attr:
+    type: Structure
+
+- name: category.*.id
+  widget:
+    type: Hidden
+
+- name: category.*.path
+  required: True
+
+- name: category.*.data
+  type: Reference
+  attr:
+    refersto: category/category_data
+  widget:
+    label: '%(label)s'
+
+views:
+  - type: all
+  - type: all_count
+  - name: categorypath-rev
+    map: |
+      function (doc) {
+        if (doc.model_type == 'photo') {
+          for (var i0 in doc.subject_category) {
+            emit(doc.subject_category[i0].path, 'subject_category.'+i0+'.path');
+          }
+        }
+      }
+  - name: by_path
+    map: |
+      function(doc) {
+          if (doc.model_type == 'facet_subject') {
+              for (c in doc.category) {
+                  emit(doc.category[c].path, doc.category[c]);
+              }
+          }
+      }
+

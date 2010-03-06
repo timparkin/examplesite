@@ -1,0 +1,147 @@
+fields:
+  - name: ref
+    required: True
+    viewby: True
+    
+  - name: code
+    required: True
+
+  - name: photographer
+    required: True
+
+  - name: photo
+    type: File
+    required: True
+    widget:
+      show_image_thumbnail: True
+      identify_size: True
+
+  - name: title
+    required: True
+
+
+  - name: location
+    required: True
+
+  - name: description
+    widget:
+      type: TextArea
+      css_class: markitup
+
+  - name: location_category
+    title: Location Category
+    type: Sequence
+    attr:
+      type: Structure
+    widget:
+      type: CheckboxMultiChoiceTreeCouchDBFacet
+      facet: location
+      css_class: checktree
+  - name: location_category.*.id
+  - name: location_category.*.path
+  - name: location_category.*.data
+    type: Reference
+    attr:
+      refersto: category/category_data
+    widget:
+      label: '%(label)s'
+
+
+  - name: subject_category
+    title: Subject Category
+    type: Sequence
+    attr:
+      type: Structure
+    widget:
+      type: CheckboxMultiChoiceTreeCouchDBFacet
+      facet: subject
+      css_class: checktree
+  - name: subject_category.*.id
+  - name: subject_category.*.path
+  - name: subject_category.*.data
+    type: Reference
+    attr:
+      refersto: category/category_data
+    widget:
+      label: '%(label)s'
+
+
+
+  - name: keywords
+    widget:
+      type: TextArea
+
+
+metadata:
+  indexes:
+    - name: title
+    - name: ref
+      type: exact
+    - name: location
+      var: location_category.*.data.label
+      type: exact
+    - name: subject
+      var: subject_category.*.data.label
+      type: exact
+  templates:
+    items-table:
+      - name: ref
+      - name: photo
+      - name: title
+    
+    
+
+views:
+- type: all
+- type: all_count
+- name: all_data
+  uses: ['photo.photo._ref','photo.photo.metadata','photo.photo.id','photo.photo.doc_id','photo.ref','photo.location','photo.title','photo.location_category','photo.subject_category','photo.photographer']
+- name: by_location_category
+  map: |
+    function(doc) {
+      if (doc.model_type == 'photo' && doc.photographer == 'Joe Cornish') {
+        for (c in doc.location_category) {
+          var segments = doc.location_category[c]['path'].split('.');
+          emit(segments, doc._id);
+        } 
+      }
+    }
+- name: by_subject_category
+  map: |
+    function(doc) {
+      if (doc.model_type == 'photo' && doc.photographer == 'Joe Cornish') {
+        for (c in doc.subject_category) {
+          var segments = doc.subject_category[c]['path'].split('.');
+          emit(segments, doc._id);
+        } 
+      }
+    }
+- name: by_ref_data
+  map: |
+      function(doc) { 
+        if (doc.model_type=='photo') {
+            emit(doc.ref,  
+                {
+                   title: doc.title, 
+                   _ref: doc._id,
+                   location: doc.location, 
+                   photographer: doc.photographer, 
+                   keywords: doc.keywords, 
+                   series: doc.series, 
+                   description: doc.description, 
+                   location_category: doc.location_category, 
+                   subject_category: doc.subject_category, 
+                   ref: doc.ref, 
+                   photo: {
+                       id: doc.photo.id, metadata: doc.photo.metadata
+                   }
+                }
+                ); 
+            }
+        }
+- name: by_code
+  map: |
+    function(doc) { 
+      if (doc.model_type == 'photo') { emit(doc.code, null); } 
+    }  
+

@@ -1,0 +1,37 @@
+fields:
+    - name: url
+      required: True
+      viewby: True
+
+    - name: title
+      required: True
+
+    - name: body
+      required: True
+      widget:
+        type: TextArea
+        css_class: markitup
+
+    - name: pagetype
+      widget:
+        type: SelectChoice
+        options: 
+          - [page-content.html,Default]
+          - [page-home.html,Home]
+          - [page-gallery.html,Gallery]
+          - [page-visit.html,Visit]
+
+
+views:
+- type: all
+- type: all_count
+- name: by_segments
+  map: |
+    function(doc) {
+      if (doc.model_type == 'page') {
+        var segments = doc.url.split('/');
+        emit(segments.slice(1), {"id":doc._id,"title":doc.title});
+      }
+    }
+
+
