@@ -3,9 +3,6 @@ fields:
     required: True
     viewby: True
     
-  - name: code
-    required: True
-
   - name: photographer
     required: True
 
@@ -18,7 +15,6 @@ fields:
 
   - name: title
     required: True
-
 
   - name: location
     required: True
@@ -65,24 +61,28 @@ fields:
     widget:
       label: '%(label)s'
 
-
-
   - name: keywords
     widget:
       type: TextArea
 
 
 metadata:
+
   indexes:
     - name: title
     - name: ref
       type: exact
-    - name: location
+    - name: location_label
       var: location_category.*.data.label
+    - name: location
+      var: location_category.*.path
       type: exact
-    - name: subject
+    - name: subject_label
       var: subject_category.*.data.label
+    - name: subject
+      var: subject_category.*.path
       type: exact
+
   templates:
     items-table:
       - name: ref
@@ -139,9 +139,3 @@ views:
                 ); 
             }
         }
-- name: by_code
-  map: |
-    function(doc) { 
-      if (doc.model_type == 'photo') { emit(doc.code, null); } 
-    }  
-

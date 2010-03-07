@@ -29,6 +29,7 @@ class Templating(templating.Templating):
         args = super(Templating, self).args(request)
         # Push to the args and return them.
         args['identity'] = who.get_identity(request)
+        args['request'] = request
         return args
 
 def make_renderer(app_conf):

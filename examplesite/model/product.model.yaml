@@ -61,11 +61,15 @@ metadata:
      - name: title
      - name: code
        type: exact
-     - name: location
+     - name: location_label
        var: photo.location_category.*.data.label
+     - name: location
+       var: photo.location_category.*.path
        type: exact
-     - name: subject
+     - name: subject_label
        var: photo.subject_category.*.data.label
+     - name: subject
+       var: photo.subject_category.*.path
        type: exact
   templates:
     items-table:
