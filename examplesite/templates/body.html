@@ -26,9 +26,9 @@ sitemap2 = create_sitemap(yaml.load(sitemap_yaml))
   <div id="header">
     <h1><a href="/">Joe Cornish - Landscape Photography</a></h1>
     %if urls.path_qs == '/':
-    ${Navigation(showroot=False).render_navigation(sitemap2, request)|n}
+    ${Navigation(showroot=False).render_navigation(sitemap2, request)|n,decode.utf8}
     %else:
-    ${Navigation(showroot=True).render_navigation(sitemap2, request)|n}
+    ${Navigation(showroot=True).render_navigation(sitemap2, request)|n,decode.utf8}
     %endif
 
   </div>

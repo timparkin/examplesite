@@ -1,13 +1,14 @@
 from __future__ import with_statement
 import logging
-from restish import http, resource
+from restish import http, resource, templating
 import adminish
+from datetime import date
 
 from wsgiapptools import flash
 from formish.fileresource import FileResource
 from formish.filestore import CachedTempFilestore, FileSystemHeaderedFilestore
 
-from examplesite.resource import redirect, gallery
+from examplesite.resource import redirect, gallery, navigation
 from examplesite.lib import base, guard
 
 from examplesite.lib.filestore import CouchDBAttachmentSource
@@ -51,7 +52,7 @@ class RootResource(base.BasePage):
             news = S.docs_by_view('newsitem/homepage_news')
         news = [n for n in news if n.get('date') and n['date'] < date.today()]
         page = results[0].doc
-        sitemap = get_navigation(request)
+        sitemap = navigation.get_navigation(request)
         data = {'page': page, 'request': request, 'sitemap': sitemap, 'news':news}
         out = templating.render(request, page['pagetype'], data, encoding='utf-8')
         return http.ok([('Content-Type', 'text/html')], out)
@@ -99,7 +100,7 @@ class PageResource(base.BasePage):
 
     @resource.GET(accept='html')
     def page(self, request):
-        sitemap = get_navigation(request)
+        sitemap = navigation.get_navigation(request)
         url = '/%s'%('/'.join(self.segments))
 
         C = request.environ['couchish']
@@ -107,6 +108,5 @@ class PageResource(base.BasePage):
             results = list(S.view('page/by_url',key=url,include_docs=True))
         page = results[0].doc
         data = {'page': page,'request':request, 'sitemap':sitemap}
-        out = templating.render(request, page['pagetype'], data)
-        return http.ok([('Content-Type', 'text/html')], out)
+        return templating.render_response(request, self, page['pagetype'], data)
 

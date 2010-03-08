@@ -1,5 +1,14 @@
+from datetime import date
+
 from menuish.menu import create_sitemap
 from operator import itemgetter
+
+
+
+
+WORKSHOP_CATEGORIES = [('practical','Practical Workshops'),('software','Software Training'),('capture2computer', 'Capture 2 Computer')]
+
+
 
 def get_workshop_nodes(C):
 
