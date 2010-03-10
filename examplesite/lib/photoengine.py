@@ -33,7 +33,7 @@ class PhotoEngine(object):
                 startkey = [self.type] 
                 endkey = [self.type] + [{}]
                 with self.couchish.session() as S:
-                    results_with_dupes= list(S.view('product/by_type',include_docs=True,startkey=startkey,endkey=endkey))
+                    results_with_dupes= list(S.view('product/by_type_and_location_category',include_docs=True,startkey=startkey,endkey=endkey))
             else:
                 print 'type and facet'
                 startkey = [self.type] + category_segments
