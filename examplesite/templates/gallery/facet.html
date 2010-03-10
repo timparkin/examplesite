@@ -1,0 +1,65 @@
+<%inherit file="/body.html" />
+<%namespace name="categorylib" file="/gallery/categorylib.html"/>
+<%def name="body_class()"> shop</%def>
+
+
+<div class="container">
+  <div class="leftpanel photo">
+<%
+header = ''
+product = request.GET.get('filter')
+if product == 'Print':
+    header = header + 'Photos with Prints'
+elif product == 'Greetings Card':
+    header = header + 'Photos with Greetings Cards'
+else:
+    header = header + 'All photos'
+if type == 'location':
+    header = header + ' by Location'
+elif type == 'subject':
+    header = header + ' by Genre'
+%>  
+<h2>${header}</h2>
+
+    <div class="details categories">
+% if facet == 'location':
+      <h3 style="margin-left: 10px">United Kingdom</h3>
+      ${categorylib.render_subtree(allcategories[facet]['tree'], depth=0, section='uk')}
+      <h3 style="margin-left: 10px">Overseas</h3>
+      ${categorylib.render_subtree(allcategories[facet]['tree'], depth=0, section='overseas')}
+      <h4><a href="${urls.new('/photos/subject').add_query('filter',product)}">View By Genre</a></h4>
+% else:
+    ${categorylib.render_subtree(allcategories[facet]['tree'])}
+    
+    <h4><a href="${urls.new('/photos/location').add_query('filter',product)}">View By Location</a></h4>
+% endif
+    </div>
+  </div>
+  <div class="main">
+% if facet == 'location':
+    <a href="/photos/location/wales.south_wales.gower_and_glamorgan/LF31"><img class="panel1" src="/filehandler/LF31?size=286x228" /></a>
+    <a href="/photos/location/scotland.western_approaches.skye/PR0210"><img class="panel2" src="/filehandler/PR0210?size=286x228" /></a>
+
+
+    <a href="/photos/location/england.yorkshire_dales.three_peaks/G05112"><img class="panel3" src="/filehandler/G05112?size=104x130" /></a>
+    <a href="/photos/location/england.northumberland.coast/T2W44"><img class="panel4" src="/filehandler/T2W44?size=104x130" /></a>
+    <a href="/photos/location/england.north_york_moors.cleveland_hills/T2W03"><img class="panel5" src="/filehandler/T2W03?size=104x130" /></a>
+    <a href="/photos/location/england.north_york_moors.cleveland_hills/PR0324"><img class="panel6" src="/filehandler/PR0324?size=104x130" /></a>
+    <a href="/photos/location/scotland.outer_hebrides.uist_and_barra/LF03"><img class="panel7" src="/filehandler/LF03?size=104x130" /></a>
+% else:
+    <a href="/photos/subject/industrial/PR0674"><img class="panel1" src="/filehandler/PR0674?size=286x228" /></a>
+    <a href="/photos/subject/mountains/WS18"><img class="panel2" src="/filehandler/WS18?size=286x228" /></a>
+
+
+    <a href="/photos/subject/rivers/G08243"><img class="panel3" src="/filehandler/G08243?size=104x130" /></a>
+    <a href="/photos/subject/trees/PR0453"><img class="panel4" src="/filehandler/PR0453?size=104x130" /></a>
+    <a href="/photos/subject/geology/T2W07"><img class="panel5" src="/filehandler/T2W07?size=104x130" /></a>
+    <a href="/photos/subject/abstract/T2W37"><img class="panel6" src="/filehandler/T2W37?size=104x130" /></a>
+    <a href="/photos/subject/agricultural/PR0456"><img class="panel7" src="/filehandler/PR0456?size=104x130" /></a>
+% endif
+ 
+  </div>
+</div>
+
+
+<%def name="title()">Shop List!</%def>

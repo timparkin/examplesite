@@ -1,0 +1,35 @@
+<%def name="render_subtree(category, depth=0, section=None)">
+
+<%
+cats = category['children']
+if depth==0:
+    if section=='uk':
+        cats = category['children'][:4]
+    if section=='overseas':
+        cats = category['children'][4:]
+%>
+
+% if len(cats) > 0 and depth <3:
+<ul>
+  % for c in cats:
+<%
+if c['data'][0] == urls.url.path_segments[-1]:
+    selected = ' class="selected"'
+else:
+    selected = ''
+filter = request.GET.get('filter')
+u = urls.url.root().path_qs.child('photos').child(facet).child(c['data'][0])
+if filter:
+    u = u.add_query('filter',filter)
+%>
+<li>
+
+<a href="${u}"${selected|n}>${c['data'][1]}</a>
+% if urls.url.path_segments[-1].startswith(c['data'][0]):
+${render_subtree(c, depth=depth+1, section=section)}
+% endif
+  </li> 
+% endfor
+</ul>
+% endif
+</%def>

@@ -1,0 +1,58 @@
+<%!
+from adminish import md
+section_lookup = {
+'newsitem': 'news',
+'workshop': 'workshops',
+'event': 'events',
+}
+%>
+<%namespace name="lib" module="examplesite.lib.makolib" />
+<%inherit file="/body.html" />
+
+<div class="leftcolumn">
+	${md.md(page['body'])|n}
+    <p>
+  Browse or purchase Joe's images as prints, cards, calendars, books. 
+</p>
+<p>
+<strong><a href="/gallery">Enter the gallery ...</a></strong> <a href="/gallery"><img class="jcgicon" alt="visit the gallery" src="http://jcassets.timparkin.co.uk/images/jc_gallery_icon.png"/></a>
+</p>
+<p>
+Art, Craft and Soul: Joe's unique vision of the landscape and his work.
+</p>
+<p>
+<strong><a href="/about">About Joe Cornish ...</a></strong> <a href="/about"><img class="jcgicon" alt="visit the gallery" src="http://jcassets.timparkin.co.uk/images/jc_artcraftsoul_icon.png"/></a>
+</p>
+
+<h2><a href="/news">Latest News</a></h2>
+           
+    % for newsitem in news:
+    <div class="newsitem">
+      <h2>${newsitem['title']}</h2>
+% if 'date' in newsitem:
+      <h3>${lib.strford(newsitem['date'], 'dmy')}</h3>
+% else:
+      <h3>${lib.strford(newsitem['from_date'], 'dmy')}</h3>
+% endif
+      <p>${newsitem['summary']} <a href="${urls.path_qs.child(section_lookup[newsitem['model_type']]).child(newsitem['_id'])}">more</a></p>
+    </div>
+    % endfor
+
+  </div>
+  <div class="main">
+
+    <a href="/photos/location/england.north_york_moors.whitby_coast/PR0334"><img class="homepage1" src="/filehandler/PR0334?size=286x228" /></a>
+    <a href="/photos/location/scotland.western_approaches/G05121"><img class="homepage2" src="/filehandler/G05121?size=286x228" /></a>
+
+    <a href="/photos/location/england.yorkshire_dales.three_peaks/G05112"><img class="homepage3" src="/filehandler/G05112?size=104x130" /></a>
+
+    <a href="/photos/location/england.northumberland/PR0886"><img class="homepage4" src="/filehandler/PR0886?size=104x130" /></a>
+    <a href="/photos/location/england.north_york_moors.cleveland_hills/T2W03"><img class="homepage5" src="/filehandler/T2W03?size=104x130" /></a>
+    <a href="/photos/location/england.north_york_moors.cleveland_hills/PR0781"><img class="homepage6" src="/filehandler/PR0781?size=104x130" /></a>
+    <a href="/photos/location/scotland.southern_highlands.glen_etive/PR0670"><img class="homepage7" src="/filehandler/PR0670?size=104x130" /></a>
+
+  </div>
+
+  <%def name="title()">Joe Cornish - Landscape Photographer and Gallery</%def>
+  <%def name="body_class()">home body-homepage</%def>
+

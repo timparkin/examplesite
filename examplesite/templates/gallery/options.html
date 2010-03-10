@@ -1,0 +1,45 @@
+<%namespace name="lib" module="examplesite.lib.makolib" />
+
+<%def name="options(product)">
+% if product['pricing']:
+<%
+    l = len(product['pricing'])
+%>
+% if l >1:
+% for option in product['pricing']:
+% if option['option'].endswith('-mounted'):
+<%
+option['size'] = lib.get_size_tuple(product,option)
+%>
+<div class="option">
+  <h4>${option['size'][1]}"x${option['size'][2]}" <span style="font-size: 85%; font-weight: normal; font-style: italic">(${float(option['size'][1])*1.5}"x${float(option['size'][2])*1.5}" Mounted)</span></h4>
+% endif
+
+<table>
+  <tr>
+% if option['option'].endswith('-framed'):
+<td class="framed">Framed</td>
+% else:
+<td class="framed">Mounted</td>
+% endif
+<td><input type="radio" value="${option['option']}" class="radiooption" name="_option" /></td>
+<td class="optionprice">£${lib.strfprice(option['price'])}</td>
+</tr>
+</table>
+
+% if option['option'].endswith('-framed'):
+</div>
+% endif
+
+% endfor
+<div class="clearfix">
+<input type="image" id="addtobasket" class="addtobasket" value="Submit" title="Add to basket" name="_submit" src="http://jcassets.timparkin.co.uk/images/addtobasket.gif" style="padding-top: 20px;" />
+</div>
+
+% else:
+<input type="hidden" name="_option" value="${product['pricing'][0]['option']}" />
+<div class="price">£${lib.strfprice(product['pricing'][0]['price'])}</div>
+<input type="image" id="addtobasket" class="addtobasket" value="Submit" title="Add to basket" name="_submit" src="http://jcassets.timparkin.co.uk/images/addtobasket.gif" style="padding-top: 20px;" />
+% endif
+% endif
+</%def>

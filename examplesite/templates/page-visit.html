@@ -1,0 +1,130 @@
+<%!
+from adminish import md
+from menuish.menu import Navigation, create_sitemap
+%>
+##---------- Prepare Data
+<%
+if '~' in page['body']:
+    cs = [p for p in page['body'].split('~') if p != '']
+    body = '<div class="firstcolumn">%s</div><div class="column">%s</div>'%(md.md(cs[0]),md.md(cs[1]) )
+else:
+    body = md.md(page['body'])
+%>
+##---------- Definitions
+
+<%def name="title()">Come and visit the Joe Cornish landscape photography gallery</%def>
+
+<%def name="page_jquery()">
+$("a.fancy").fancybox({ 'hideOnContentClick': true }); 
+$("area.map1").click( function() { $('#map1').click(); });
+$("area.map2").click( function() { $('#map2').click(); });
+$("area.map3").click( function() { $('#map3').click(); });
+$("area.map4").click( function() { $('#map4').click(); });
+$("area.map5").click( function() { $('#map5').click(); });
+$("area.map6").click( function() { $('#map6').click(); });
+$("area.map7").click( function() { $('#map7').click(); });
+</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      ${Navigation(item_class=['firstlast','number'], openall=True, startdepth=1, showroot=True).render_navigation(sitemap, request)|n}
+    </div>
+  </div>
+  <div class="main">
+    <h1>${page['title']}</h1>
+    ${body|n}
+<div id="visit_gallery" class="clearfix">
+  <a id="map6" title="House Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/exhibition-room3.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/exhibition-room3_small.jpg" alt="House Gallery"/></a>
+  <a id="map7" title="House Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/exhibition-room2.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/exhibition-room2_small.jpg" alt="House Gallery"/></a>
+  <a id="map1" title="Corridor" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/corridor.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/corridor_small.jpg" alt="Corridor"/></a>
+  <a id="map5" title="Arched Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/sideroom.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/sideroom_small.jpg" alt="Arched Gallery"/></a>
+  <a id="map2" title="Long Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/small-print-room2.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/small-print-room2_small.jpg" alt="Long Gallery"/></a>
+  <a title="Long Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/small-print-room.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/small-print-room_small.jpg" alt="Long Gallery"/></a>
+  <a title="Studio Gallery" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/main-room-wide.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/main-room-wide_small.jpg" alt="Studio Gallery"/></a>
+  <a title="Studio Gallery" id="map4" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/main-room.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/main-room_small.jpg" alt="Studio Gallery"/></a>
+  <a id="map3" title="Range Room" class="fancy" href="http://jcassets.timparkin.co.uk/images/graphic/far-nook.jpg"><img src="http://jcassets.timparkin.co.uk/images/graphic/far-nook_small.jpg" alt="Range Room"/></a>
+ </div>
+ <img src="http://jcassets.timparkin.co.uk/images/graphic/floorplan-forweb.png" id="floorplanforweb" usemap="#m_floorplanforweb"/>
+<map name="m_floorplanforweb" id="m_floorplanforweb">
+<area shape="rect" coords="209,87,304,117" class="map1" />
+<area shape="rect" coords="327,140,377,270" class="map2" />
+<area shape="rect" coords="501,23,578,90"  class="map3" />
+<area shape="rect" coords="329,20,488,125" class="map4" />
+<area shape="rect" coords="215,19,304,78"  class="map5" />
+<area shape="rect" coords="20,128,124,263" class="map6" />
+<area shape="rect" coords="20,23,107,110"  class="map7" />
+</map>
+</div>
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAaCPZVP6dT-0_nXmYbWNcxBTyZnf3Dxr6V5dS7wkBMxeQRXc2RRQvqWA3vvjIFDaFbxpBNIo67uuEgw" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+// Google Map Maker script v.1.1
+// (c) 2006 Richard Stephenson http://www.donkeymagic.co.uk
+// Email: donkeymagic@gmail.com
+// http://mapmaker.donkeymagic.co.uk
+var map;
+var icon0;
+var newpoints = new Array();
+ 
+function addLoadEvent(func) { 
+  var oldonload = window.onload; 
+  if (typeof window.onload != 'function'){ 
+    window.onload = func
+  } else { 
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
+ 
+addLoadEvent(loadMap);
+addLoadEvent(addPoints);
+ 
+function loadMap() {
+  map = new GMap2(document.getElementById("map"));
+  map.addControl(new GSmallZoomControl3D());
+  map.addControl(new GMapTypeControl());
+  map.setCenter(new GLatLng( 54.338771553789406, -1.4328744215011597), 15);
+   map.setMapType(G_NORMAL_MAP);
+ 
+  icon0 = new GIcon();
+  icon0.image = "http://www.google.com/mapfiles/marker.png";
+  icon0.shadow = "http://www.google.com/mapfiles/shadow50.png";
+  icon0.iconSize = new GSize(20, 34);
+  icon0.shadowSize = new GSize(37, 34);
+  icon0.iconAnchor = new GPoint(9, 34);
+  icon0.infoWindowAnchor = new GPoint(9, 2);
+  icon0.infoShadowAnchor = new GPoint(18, 25);
+}
+ 
+function addPoints() {
+ 
+  newpoints[0] = new Array(54.3388902414349, -1.4328950643539429, icon0, 'JoeCornishGallery', 'Our full mail address is<br />    Joe Cornish Gallery<br />    Joegraphic Ltd<br />    Register House<br />    Zetland Street<br />    Northallerton<br />    DL6 1NA<br />    United Kingdom<br /><br />email gallery@joecornish.com<br />call 01609 777404.'); 
+ 
+  for(var i = 0; i < newpoints.length; i++) {
+    var point = new GPoint(newpoints[i][1],newpoints[i][0]);
+    var popuphtml = newpoints[i][4] ;
+    var marker = createMarker(point,newpoints[i][2],popuphtml);
+    map.addOverlay(marker);
+  }
+}
+ 
+function createMarker(point, icon, popuphtml) {
+  var popuphtml = "<div id=\"popup\">" + popuphtml + "<\/div>";
+  var marker = new GMarker(point, icon);
+  GEvent.addListener(marker, "click", function() {
+    marker.openInfoWindowHtml(popuphtml);
+  });
+  return marker;
+}
+//]]>
+</script>
+<div id="map" style="width:600px;height:250px"></div>
+

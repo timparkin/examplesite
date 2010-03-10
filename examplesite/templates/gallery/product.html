@@ -1,0 +1,134 @@
+<%inherit file="/body.html" />
+<%namespace name="lib" module="examplesite.lib.makolib" />
+<%namespace file="/gallery/options.html" import="options"/>
+<%def name="body_class()"> shop</%def>
+
+<%
+zoom = request.GET.get('zoom') == 'True'
+aspectratio = float(product['photo']['photo']['metadata']['width'])/product['photo']['photo']['metadata']['height']
+if aspectratio < 1.0:
+    width = 403
+    height = 600
+if aspectratio > 1.0:
+    width = 647
+    height = 410
+
+if zoom == True:
+   width = 1000
+   height= 970
+location = [l['data']['label'] for l in product['photo']['location_category']]
+location.reverse()
+location = ', '.join(location)
+%>
+
+
+
+<div class="container">
+% if zoom == False:
+  <div class="leftpanel photo">
+    <h2>${product['title']}
+      % if zoom == True:
+      <em><a href="${urls.path_qs.add_query('zoom',zoom == False)}">click image to go back</a></em>
+      % endif
+    </h2>
+%else:
+    <h2>${product['title']}
+      % if zoom == True:
+      <em><a href="${urls.path_qs.add_query('zoom',zoom == False)}">click image to go back</a></em>
+      % endif
+    </h2>
+%endif
+
+% if zoom == False:
+    <div class="details">
+  <%
+if product['type'] != 'Print':
+    description = product['type'].title()
+else:
+    if product['edition'] != 'unlimited':
+        description = 'Print, Edition of %s'%product['edition']
+    else:
+        description = 'Print, Unlimited'
+%>
+
+      <div class="description">${product['information']}</div>
+<ul>
+    <li>${description}</li>
+    <li>Code: ${product['code']}</li
+  </ul>
+
+      <div class="options clearfix">
+        <form method="post" action="/basket">
+          <input type="hidden" value="add" name="command"/>
+          <input type="hidden" value="${product['_id']}" name="_id"/>
+          ${options(product)}
+        </form>
+      </div>
+
+
+% if product['type'] == 'Print':
+<p>The standard frame is Oak but other options are available. Please call us on 01609 777404 or 01609 761977 to discuss. All sizes are approximate.</p>
+% endif
+<%
+x = [p for p in products if p['code'] != product['code']]
+%>
+% if len(x) > 0:
+<h3>Also available as:</h3>
+% for p in x:
+  <%
+if p['type'] != 'Print':
+    description = p['type'].title()
+else:
+    if p['edition'] != 'unlimited':
+        description = 'Print, Edition of %s'%p['edition']
+    else:
+        description = 'Print, Unlimited Edition'
+
+%>
+
+<a href="${urls.path_qs.parent().sibling('products').child(p['code'].replace('/','|'))}">${description}</a>
+% endfor
+% endif
+
+
+
+    </div>
+% endif
+
+% if zoom == False:
+  </div>
+% endif
+
+
+<%
+def add_pageref(url):
+    values = [value for name, value in urls.url.query_list if name == 'pageref']
+    if values:
+        url = url.add_query('pageref',values[0]) 
+    values = [value for name, value in urls.url.query_list if name == 'filter']
+    if values:
+        url = url.add_query('filter',values[0]) 
+    return url
+
+%>
+
+
+
+  <div class="photo">
+    <div id="photonav">
+    % if prev:
+    <div id="prev"><a href="${add_pageref(urls.path_qs.parent().child(prev))}">prev</a></div>
+    % endif
+    <div id="up"><a href="${add_pageref(urls.path_qs.parent())}">up</a></div>
+    % if next:
+    <div id="next"><a href="${add_pageref(urls.path_qs.parent().child(next))}">next</a></div>
+    % endif
+    </div>
+    <div id="mainImage" class="productimage ">
+      <a href="${urls.path_qs.add_query('zoom',zoom == False)}"><img src="/filehandler/${product['photo']['_ref']}/${product['photo']['photo']['id']}?size=${width}x${height}" alt="${product['title']}" title="${product['title']}" /></a>
+    </div>
+  </div>
+
+</div>
+
+<%def name="title()">Product Photo!</%def>

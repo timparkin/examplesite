@@ -1,0 +1,49 @@
+fields:
+
+    - name: menu_title
+      required: True
+
+    - name: title
+      required: True
+
+    - name: summary
+      required: True
+      widget:
+        type: TextArea
+
+    - name: body
+      required: True
+      widget:
+        type: TextArea
+        css_class: markitup
+
+    - name: from_date
+      required: True
+      type: Date
+      widget:
+        type: DateParts
+
+    - name: to_date
+      required: True
+      type: Date
+      widget:
+        type: DateParts
+
+    - name: category
+      required: True
+      widget: 
+        type: SelectChoice
+        options:
+          - [practical, Practical Workshops]
+          - [software,Software Training]
+          - [capture2computer,Capture 2 Computer]
+
+
+    - name: homepage_feature
+      type: Boolean
+
+views:
+- type: all
+- type: all_count
+
+

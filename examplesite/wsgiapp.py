@@ -11,6 +11,7 @@ from adminish import index
 from notification.mako.service import NotificationService
 
 from examplesite.resource import root
+from examplesite import hooks
 
 
 def make_app(global_conf, **app_conf):
@@ -29,6 +30,11 @@ def make_app(global_conf, **app_conf):
     return app
 
 
+def wrap_hook(environ, hook):
+    def _hook(additions, deletions, changes):
+        hook(environ, additions, deletions, changes)
+    return _hook
+
 def setup_environ(app, global_conf, app_conf):
     """
     WSGI application wrapper factory for extending the WSGI environ with
@@ -45,7 +51,7 @@ def setup_environ(app, global_conf, app_conf):
 
         # Add additional keys to the environ here.
         _db = couchdb.Database(app_conf['couchish.db.url'])
-        db = couchish.CouchishStore(_db, couchish_config)
+        db = couchish.CouchishStore(_db, couchish_config, pre_flush_hook=wrap_hook(environ, hooks.pre_flush_hook), post_flush_hook=wrap_hook(environ, hooks.post_flush_hook))
         environ['restish.templating'] = templating
         environ['couchish'] = db
         environ['adminish'] = adminish_config
