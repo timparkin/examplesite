@@ -13,6 +13,33 @@ import logging
 
 log = logging.getLogger(__name__)
 
+def get_result(self, request):
+    P = photoengine.PhotoEngine(request)
+    result = P.search_products(self.facet, self.category)
+    result.update( {'type': self.type, 'facet': self.facet, 'category': self.category} )
+    photolist = photoordering.PhotoList()
+    photolist.add(result['photos'])
+    ordered_photos = photolist.process()
+    p = paged_list(request, ordered_photos, max_pagesize=5)
+    ordered_photos = p['items']
+    result.update( {'p':Paging(request,p), 'rows': ordered_photos} )
+    allcategories = P.categories()
+    result.update( {'allcategories': allcategories} )
+    return result
+
+def get_prev_next(id, rows):
+    prev = next = None
+    all_photos = []
+    for row in rows:
+        for p in row:
+            all_photos.append(p)
+    for n,p in enumerate(all_photos):
+        if p.photo['ref'] == id:
+            if n-1 >= 0:
+                prev = all_photos[n-1].photo['code']
+            if n+1 < len(rows):
+                next = all_photos[n+1].photo['code']
+    return prev, next
 
 class Gallery(base.BasePage):
 
@@ -44,21 +71,6 @@ class Facet(base.BasePage):
         return result
 
 
-def get_result(self, request):
-    P = photoengine.PhotoEngine(request)
-    result = P.search_products(self.facet, self.category)
-    result.update( {'type': self.type, 'facet': self.facet, 'category': self.category} )
-    photolist = photoordering.PhotoList()
-    photolist.add(result['photos'])
-    ordered_photos = photolist.process()
-    p = paged_list(request, ordered_photos, max_pagesize=5)
-    ordered_photos = p['items']
-    result.update( {'p':Paging(request,p), 'rows': ordered_photos} )
-    allcategories = P.categories()
-    result.update( {'allcategories': allcategories} )
-    return result
-
-
 class Category(base.BasePage):
 
     def __init__(self, type, facet, category):
@@ -75,20 +87,6 @@ class Category(base.BasePage):
     def get(self, request):
         return get_result(self, request)
    
-
-def get_prev_next(id, rows):
-    prev = next = None
-    all_photos = []
-    for row in rows:
-        for p in row:
-            all_photos.append(p)
-    for n,p in enumerate(all_photos):
-        if p.photo['ref'] == id:
-            if n-1 >= 0:
-                prev = all_photos[n-1].photo['code']
-            if n+1 < len(rows):
-                next = all_photos[n+1].photo['code']
-    return prev, next
 
 class Item(base.BasePage):
 
@@ -108,8 +106,6 @@ class Item(base.BasePage):
             products = S.docs_by_view('product/by_master_photo',key=product['photo']['ref'])
         result.update( {'product': product, 'products': products} )
         prev, next = get_prev_next(self.id, result['rows'])
-        print 'prev',prev
-        print 'next',next
         result.update({'prev': prev, 'next': next})
         return result
 
