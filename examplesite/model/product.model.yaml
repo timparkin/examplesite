@@ -117,4 +117,35 @@ views:
         } 
       }
     }
-
+- name: by_location_category
+  map: |
+    function(doc) {
+      if (doc.model_type == 'product' && doc.photo.photographer == 'Joe Cornish') {
+        for (c in doc.photo.location_category) {
+          var segments = doc.photo.location_category[c]['path'].split('.');
+          emit(segments, doc.photo.location_category[c]['path']);
+        }
+      }
+    }
+- name: by_subject_category
+  map: |
+    function(doc) {
+      if (doc.model_type == 'product' && doc.photo.photographer == 'Joe Cornish') {
+        for (c in doc.photo.subject_category) {
+          var segments = doc.photo.subject_category[c]['path'].split('.');
+          emit(segments, doc._id);
+        }
+      }
+    }
+- name: by_type_with_categories
+  map: |
+    function(doc) {
+      if (doc.model_type == 'product' && doc.photo.photographer == 'Joe Cornish') {
+        for (c in doc.photo.location_category) {
+          emit([doc.type], {'facet':'location','category': doc.photo.location_category[c]});
+        }
+        for (c in doc.photo.subject_category) {
+          emit([doc.type], {'facet':'subject','category': doc.photo.subject_category[c]});
+        }
+      }
+    }
