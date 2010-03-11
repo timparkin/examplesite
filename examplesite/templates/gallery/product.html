@@ -86,7 +86,7 @@ else:
 
 %>
 
-<a href="${urls.path_qs.parent().sibling('products').child(p['code'].replace('/','|'))}">${description}</a>
+<a href="${urls.path_qs.parent().child(p['code'].replace('/','|'))}">${description}</a>
 % endfor
 % endif
 

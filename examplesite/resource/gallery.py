@@ -19,7 +19,6 @@ def get_result(self, request):
     cache_result = cache_db.get(cache_id)
     P = photoengine.PhotoEngine(request)
     if cache_result:
-        print 'CACHE HIT'
         result = cache_result['data']
     else:
         result = P.search_products(self.facet, self.category)
@@ -28,7 +27,6 @@ def get_result(self, request):
         photolist.add(result['photos'])
         ordered_photos = photolist.process()
         result['opdict'] = [[p.photodict for p in row] for row in ordered_photos]
-        print 'CACHE BUILD'
         cache_db.update( [ {'_id': cache_id, 'data': result} ] )
     p = paged_list(request, result['opdict'], max_pagesize=5)
     page_of_ordered_photos = p['items']
@@ -116,7 +114,7 @@ class Item(base.BasePage):
             product = S.doc_by_view('product/by_code',key=self.id)
             products = S.docs_by_view('product/by_master_photo',key=product['photo']['ref'])
         result.update( {'product': product, 'products': products} )
-        prev, next = get_prev_next(self.id, result['rows'])
+        prev, next = get_prev_next(product['photo']['ref'], result['opdict'])
         result.update({'prev': prev, 'next': next})
         return result
 
