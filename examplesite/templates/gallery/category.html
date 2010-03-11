@@ -62,14 +62,14 @@ ${paging.paging(p)}
 % for n,P in enumerate(row):
 % if P:
 <%
-photo = P.photo
+photo = P
 count_class = ''
 if n == 2:
     count_class = ' last'
-width = photo['photo'].metadata['width']
-height = photo['photo'].metadata['height']
-id = photo['photo'].id
-ref = photo['photo'].doc_id
+width = photo['photo']['metadata']['width']
+height = photo['photo']['metadata']['height']
+id = photo['photo']['id']
+ref = photo['photo']['doc_id']
 product_code = products_by_photo[ref].replace('/','|')
 elementwidth = int(float(259)*width/height)
 def add_pageref(url):

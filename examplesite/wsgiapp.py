@@ -51,9 +51,11 @@ def setup_environ(app, global_conf, app_conf):
 
         # Add additional keys to the environ here.
         _db = couchdb.Database(app_conf['couchish.db.url'])
+        cache_db = couchdb.Database(app_conf['cache.db.url'])
         db = couchish.CouchishStore(_db, couchish_config, pre_flush_hook=wrap_hook(environ, hooks.pre_flush_hook), post_flush_hook=wrap_hook(environ, hooks.post_flush_hook))
         environ['restish.templating'] = templating
         environ['couchish'] = db
+        environ['cache'] = cache_db
         environ['adminish'] = adminish_config
         environ['searcher'] = index.Searcher(db, app_conf['index_dir'], adminish_config = adminish_config)
         environ['notification'] = notification_service

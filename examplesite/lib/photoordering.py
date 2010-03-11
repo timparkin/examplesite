@@ -32,6 +32,8 @@ class Photo:
         self.list = list
         if hasattr(photo['photo'], 'metadata'):
             metadata = photo['photo'].metadata
+        elif 'metadata' in photo['photo']:
+            metadata = photo['photo']['metadata']
         else:
             metadata = photo['photo']['photo']['metadata']
         self.aspectratio = float(metadata['width'])/metadata['height']
@@ -45,6 +47,22 @@ class Photo:
             self.type = 'S'
             self.ascii = '#'
             
+    @property
+    def photodict(self):
+        if 'metadata' in self.photo['photo']:
+            if hasattr(self.photo,'__subject__'):
+                return self.photo.__subject__
+            return self.photo
+        photo = self.photo['photo']
+        out = {}
+        out['metadata'] = photo.metadata
+        out['filename'] = photo.filename
+        out['id'] = photo.id
+        out['doc_id'] = photo.doc_id
+        self.photo['photo'] = out
+        print 'type',type(self.photo)
+        return self.photo.__subject__
+
     def remove(self):
         #print 'popping %s at 0'%(self.list.photos[0].type)
         out = [self.list.photos[0]]
@@ -141,7 +159,8 @@ class PhotoList:
         for row in out:
             rows += 1
             page = []
-            page.append(row)
+            photo = row.photodict
+            page.append(photo)
             if rows == 3:
                 pages.append(page)
                 rows = 0

@@ -1,11 +1,33 @@
 from couchfti import query
 from examplesite.lib.categories import mktree
+from examplesite.lib import cache
 
+def unwrap_doc(doc):
+    if hasattr(doc, '__subject__'):
+        return doc.__subject__
+    return doc
+
+def unwrap_docs(docs):
+    out = []
+    for doc in docs:
+        out.append(doc)
+    return out
+
+def _dictify_photo(photo):
+    p = photo['photo']
+    out = {}
+    out['metadata'] = p.metadata
+    out['filename'] = p.filename
+    out['id'] = p.id
+    out['doc_id'] = p.doc_id
+    photo['photo'] = out
+    return unwrap_doc(photo)
 
 class PhotoEngine(object):
 
     def __init__(self, request):
         e = request.environ
+        self.cache = e['cache']
         self.searcher = e['searcher']
         self.couchish = e['couchish']
         self.type = request.GET.get('filter')
@@ -20,26 +42,26 @@ class PhotoEngine(object):
             if facet is None:
                 print 'no facet for type'
                 with self.couchish.session() as S:
-                    results_with_dupes=list(S.view('product/all', include_docs=True))
+                    results_with_dupes=unwrap_docs(S.view('product/all', include_docs=True))
             else:
                 print 'facet only'
                 startkey = category_segments
                 endkey = category_segments + [{}]
                 with self.couchish.session() as S:
-                    results_with_dupes=list(S.view('product/by_%s_category'%facet,include_docs=True,startkey=startkey,endkey=endkey))
+                    results_with_dupes=unwrap_docs(S.view('product/by_%s_category'%facet,include_docs=True,startkey=startkey,endkey=endkey))
         else:
             if facet is None:
                 print 'type only'
                 startkey = [self.type] 
                 endkey = [self.type] + [{}]
                 with self.couchish.session() as S:
-                    results_with_dupes= list(S.view('product/by_type_and_location_category',include_docs=True,startkey=startkey,endkey=endkey))
+                    results_with_dupes= unwrap_docs(S.view('product/by_type_and_location_category',include_docs=True,startkey=startkey,endkey=endkey))
             else:
                 print 'type and facet'
                 startkey = [self.type] + category_segments
                 endkey = [self.type] + category_segments + [{}]
                 with self.couchish.session() as S:
-                    results_with_dupes= list(S.view('product/by_type_and_%s_category'%facet,include_docs=True,startkey=startkey,endkey=endkey))
+                    results_with_dupes= unwrap_docs(S.view('product/by_type_and_%s_category'%facet,include_docs=True,startkey=startkey,endkey=endkey))
         return results_with_dupes
 
     def _photos_from_products(self, results_with_dupes):
@@ -58,7 +80,7 @@ class PhotoEngine(object):
             if result.doc['code'] not in master_photos:
                 master_photos.add(result.doc['code'])
                 result.doc['product_code'] = products_by_photo.get(result.doc['_id'],result.doc['code'])
-                photos.append(result.doc)
+                photos.append(_dictify_photo(result.doc))
         location_categories = {}
         subject_categories = {}
         photos = list(photos)
@@ -74,6 +96,9 @@ class PhotoEngine(object):
 
 
     def categories(self):
+        result = self.cache.get(cache.key('categories',self.type ))
+        if result:
+            return result['data']
         if self.type:
             startkey = [self.type]
             endkey = [self.type] + [{}]
@@ -98,10 +123,11 @@ class PhotoEngine(object):
         for category in subject_categories:
             if category['path'] in all_categories['subject']:
                 all_sorted_categories['subject'].append( all_categories['subject'][category['path']] )
-        categories = {}
-        categories['location'] = {'flatcats': all_sorted_categories['location'], 'tree': mktree(all_sorted_categories['location'])}
-        categories['subject'] = {'flatcats': all_sorted_categories['subject'], 'tree': mktree(all_sorted_categories['subject'])}
-        return categories
+        categories = {'_id': cache.key('categories',self.type), 'data': {}}
+        categories['data']['location'] = {'flatcats': all_sorted_categories['location'], 'tree': mktree(all_sorted_categories['location'])}
+        categories['data']['subject'] = {'flatcats': all_sorted_categories['subject'], 'tree': mktree(all_sorted_categories['subject'])}
+        self.cache.update([categories])
+        return categories['data']
 
         
 
