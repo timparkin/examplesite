@@ -8,7 +8,7 @@ from wsgiapptools import flash
 from formish.fileresource import FileResource
 from formish.filestore import CachedTempFilestore, FileSystemHeaderedFilestore
 
-from examplesite.resource import redirect, gallery, navigation, items
+from examplesite.resource import redirect, gallery, navigation, items, basket, checkout
 from examplesite.lib import base, guard
 
 from examplesite.lib.filestore import CouchDBAttachmentSource
@@ -97,6 +97,10 @@ class RootResource(base.BasePage):
     @resource.child()
     def workshops(self, request, segments):
         return items.Workshops()
+
+    @resource.child()
+    def checkout(self, request, segments):
+        return checkout.CheckoutResource()
 
     @resource.child('filehandler')
     def filehandler(self, request, segments):

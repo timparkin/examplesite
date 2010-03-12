@@ -1,0 +1,279 @@
+##---------- Prepare Data
+##---------- Definitions
+
+<%def name="title()">Page!!</%def>
+<%def name="body_class()"> newsitem</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      <h2>Final Payment</h2>
+      <p>This is the final payment page on the Secure Hosting website. We use a third party certified payment provider in order to ensure your credit card information is kept as secure as possible. Once your transaction is complete, your credit card number is deleted.</p>
+    </div>
+  </div>
+  <div class="main">
+    <h2>Credit Card and Delivery Confirmation</h2>
+<script>
+function completeCardholder(check) {
+	
+	var checked = check.checked;
+	
+	if (checked) {
+		document.forms['basketform'].deliveryname.value = document.forms['basketform'].cardholdersname.value;
+		document.forms['basketform'].deliveryAddr1.value = document.forms['basketform'].cardHolderAddr1.value;
+		document.forms['basketform'].deliveryCity.value = document.forms['basketform'].cardHolderCity.value;
+		document.forms['basketform'].deliveryState.value = document.forms['basketform'].cardHolderState.value;
+		document.forms['basketform'].deliveryPostcode.value = document.forms['basketform'].cardHolderPostcode.value;
+	}
+	else {
+		document.forms['basketform'].deliveryname.value = "";
+		document.forms['basketform'].deliveryAddr1.value = "";
+		document.forms['basketform'].deliveryCity.value = "";
+		document.forms['basketform'].deliveryState.value = "";
+		document.forms['basketform'].deliveryPostcode.value = "";
+	}
+}
+</script>
+<div style="border: 1px solid #CCC; padding: 10px">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                    <tr>
+                      <td width="3%">&nbsp;</td>
+                      <td width="9%" style=" text-align: left; font-weight: bold;">Code</td>
+                      <td width="43%" style="padding-left: 10px; text-align: left; font-weight: bold;">Name</td>
+                      <td width="15%" style="text-align: left; font-weight: bold;">Quantity</td>
+                      <td width="15%" style="text-align: left; font-weight: bold;">Price</td>
+                      <td width="15%" style="text-align: left; font-weight: bold;">Total</td>
+                    </tr>
+                    <loopstart:shoplst:>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td valign="top">$itemcode</td>
+                      <td valign="top" style="padding-left: 10px; text-align: left;">$itemdesc</td>
+                      <td valign="top">$itemquan</td>
+                      <td valign="top">$transactioncurrency$itempric</td>
+                      <td valign="top">$transactioncurrency$itemtota</td>
+                    </tr>
+                    <loopend>
+                    <tr>
+                      <td colspan="6">&nbsp;</td>
+                    </tr>
+                  </table>
+                  <div align="right">
+                    <table width="40%" border="0" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td width="55%" style="text-align: right; padding-right: 10px;">Subtotal:</td>
+                        <td width="45%"><strong>$transactioncurrency$products_price</strong></td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right; padding-right: 10px;">Shipping:</td>
+                        <td><strong>$transactioncurrency$shippingcharge</strong></td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right; padding-right: 10px;">Total (Incl VAT):</td>
+                        <td><strong>$transactioncurrency$transactionamount</strong></td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right; padding-right: 10px;">VAT (calculated):</td>
+                        <td><em>[ $transactioncurrency$transactiontax ]</em></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">&nbsp;</td>
+                      </tr>
+                    </table>
+
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td colspan="2"><strong>Card Holder Details - </strong></td>
+                      </tr>
+                      <form action="https://www.secure-server-hosting.com/secutran/transactionsi1.php" method="post" name="basketform" id="basketform">
+                        <input type="hidden" name='shreference' value='$shreference' />
+                        <input type="hidden" name='checkcode' value='$checkcode' />
+                        <input type="hidden" name='secuitems' value='$secuitems' />
+                        <input type="hidden" name='transactioncurrency' value='$transactioncurrency' />
+                        <input type="hidden" name='shippingcharge' value='$shippingcharge' />
+                        <input type="hidden" name='transactiontax' value='$transactiontax' />
+                        <input type="hidden" name='transactionamount' value='$transactionamount' />
+                        <input type="hidden" name='filename' value='$backfile' />
+                        <tr>
+                          <td colspan="2"><table width="100%"  border="0" cellspacing="0" cellpadding="2">
+                              <tr>
+                                <td width="200">Name:</td>
+                                <td colspan="4"><input type="text" name="cardholdersname" style="width: 175px;" value="$cardholdersname" readonly="readonly" />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>Email address:</td>
+                                <td colspan="4"><input type="text" name="cardholdersemail" style="width: 175px;" value="$cardholdersemail" readonly="readonly"  />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>Phone number:</td>
+                                <td colspan="4"><input type="text" name="cardHolderTelephoneNumber" style="width: 175px;" value="$cardholdersphonenumber" readonly="readonly"  />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>Street:</td>
+                                <td colspan="4"><input type="text" name="cardHolderAddr1" style="width: 175px;" value="$billing_street1" readonly="readonly" />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>City/Town:</td>
+                                <td colspan="4"><input type="text" name="cardHolderCity" style="width: 175px;" value="$billing_city" readonly="readonly" />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>County:</td>
+                                <td colspan="4"><input type="text" name="cardHolderState" style="width: 175px;" value="$billing_county" readonly="readonly" />
+&nbsp;<span style="color:red;"></span></td>
+                              </tr>
+                              <tr>
+                                <td>Postcode:</td>
+                                <td colspan="4"><input type="text" name="cardHolderPostcode" style="width: 175px;" value="$billing_postcode" readonly="readonly" />
+&nbsp;<span style="color:red;">*</span></td>
+                              </tr>
+                              <tr>
+                                <td colspan="5">&nbsp;</td>
+                              </tr>
+                            </table>
+                            <table width="100%"  border="0" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td colspan="2"><strong>Card Details - </strong><span style="color:red;">*</span> <span style="font-size: 11px;">indicates a required field.</span></td>
+                      </tr>
+                              <tr>
+                                <td width="200">Card type:</td>
+                                <td><select name="cardType" >
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Electron">Electron</option>
+                                    <option value="Maestro">Maestro</option>
+                                    <option value="Solo">Solo</option>
+                                  </select>
+                                  &nbsp;<span style="color:red;">*</span></td>
+                                </tr> <tr>
+                                <td>Card number:</td>
+                                <td><input type="text" name="cardnumber" style="width: 175px;" />
+&nbsp;<span style="color:red;">*</span></td>
+                                </tr>
+                                <tr>
+                                <td width="200">Start date:</td>
+                                <td><select name="cardstartmonth">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                  </select>
+                                  /
+                                  <select name="cardstartyear">
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                  </select>
+&nbsp;</td>
+                              </tr>
+                                <tr>
+                                <td>Expiry date:</td>
+                                <td><select name="cardexpiremonth">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                  </select>
+                                  /
+                                  <select name="cardexpireyear">
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                  </select>
+&nbsp;<span style="color:red;">*</span></td>
+                              </tr>
+                              <tr>
+                                <td>Issue number:</td>
+                                <td><input name="switchnumber" type="text" style="width: 25px;" /></td>
+                                </tr><tr>
+                                <td>CV2 number:</td>
+                                <td><input type="text" name="cv2" style="width: 50px;" />
+&nbsp;<span style="color:red;">*</span></td>
+                              </tr>
+                              <tr>
+                                <td colspan="4">&nbsp;</td>
+                              </tr>
+                            </table></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><strong>Delivery Details - </strong></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><table width="100%"  border="0" cellspacing="0" cellpadding="2">
+                              <tr>
+                                <td width="200">Name:</td>
+                                <td><input type="text" name="deliveryname" style="width: 175px;" value="$deliveryname"  readonly="readonly" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Street:</td>
+                                <td><input type="text" name="deliveryAddr1" style="width: 175px;" value="$delivery_street1" readonly="readonly" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>City/Town:</td>
+                                <td><input type="text" name="deliveryCity"  style="width: 175px;" value="$delivery_city" readonly="readonly" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>County:</td>
+                                <td><input type="text" name="deliveryState" style="width: 175px;" value="$delivery_county" readonly="readonly" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Postcode:</td>
+                                <td><input type="text" name="deliveryPostcode" style="width: 175px;" value="$delivery_postcode" readonly="readonly" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">&nbsp;</td>
+                              </tr>
+                              <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2"><input type="submit" value="Complete Order" name="Complete Order" class="button" />
+                                </td>
+                              </tr>
+                            </table>
+                        </tr>
+                      </form>
+                    </table>
+                  </div>
+                </div>
+  </div>
+</div>

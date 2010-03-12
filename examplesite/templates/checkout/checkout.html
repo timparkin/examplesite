@@ -1,0 +1,71 @@
+##---------- Prepare Data
+##---------- Definitions
+
+<%def name="title()">Page!!</%def>
+<%def name="body_class()"> newsitem</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      <h2>Check Addresses</h2>
+      <p>We've filled out the address details from those you have when you registered your account with us. If you are happy with them, you may click checkout at the bottom of the form immediatly. You may change the details before continuing if you wish</p>
+    </div>
+  </div>
+  <div class="main">
+    <h2>Checkout</h2>
+
+
+
+
+    ${form.header()|n}
+    ${form.metadata()|n}
+
+    ${form['filename']()|n}
+    ${form['secuitems']()|n}
+    ${form['shreference']()|n}
+    ${form['cardholdersname']()|n}
+    ${form['deliveryname']()|n}
+    ${form['transactioncurrency']()|n}
+    ${form['products_price']()|n}
+    ${form['shippingcharge']()|n}
+    ${form['transactiontax']()|n}
+    ${form['transactionamount']()|n}
+
+    <h4>Contact Details</h4>
+    ${form['cardholdersemail']()|n}
+    ${form['cardholdersphonenumber']()|n}
+
+
+    <h4>Billing Address</h4>
+    ${form['billing_street1']()|n}
+    ${form['billing_street2']()|n}
+    ${form['billing_street3']()|n}
+    ${form['billing_city']()|n}
+    ${form['billing_county']()|n}
+    ${form['billing_postcode']()|n}
+    ${form['billing_country']()|n}
+    <h4>Delivery Address</h4>
+    ${form['delivery_street1']()|n}
+    ${form['delivery_street2']()|n}
+    ${form['delivery_street3']()|n}
+    ${form['delivery_city']()|n}
+    ${form['delivery_county']()|n}
+    ${form['delivery_postcode']()|n}
+    ${form['delivery_country']()|n}
+
+
+    ${form.actions()|n}
+    ${form.footer()|n}
+
+
+
+
+
+  </div>
+</div>
+
+

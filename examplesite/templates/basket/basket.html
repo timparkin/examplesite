@@ -1,0 +1,72 @@
+<%inherit file="/page-gallery.html" />
+<%namespace name="paging" file="/paging.html"/>
+<%namespace name="lib" module="examplesite.lib.makolib" />
+
+<%def name="body_class()"> basket</%def>
+
+<div class="clearfix" id="body">
+    
+
+<div class="container">
+  <div class="leftcolumn">
+    <h2>How to Purchase</h2>
+    <p>Once you have selected the products you wish to purchase, click on the checkout button below.</p>
+    <p>This will take you to a page where you can <strong>login</strong>, if you already have an account, or <strong>register</strong> for a new account.</p>
+    <p>Once you have done this, you may confirm or change your delivery details and you will then be taken to our secure hosting payment page where you can enter your card details.</p>
+    <p>Pictures of a similar size may be priced differently because of the edition size. Editiom sizes vary from 5 to 100. Each picture says what sizes the edition is.</p>
+    <p><a href="/checkout" class="checkout">Click here to checkout</a></p>
+  </div>
+  <div class="main">
+
+ 
+ 
+    
+
+    <h2>Basket Details</h2>
+
+  
+    
+    <form method="post" class="basket" action="">
+      <table cellspacing="0" cellpadding="0" border="0" class="basket"><thead>
+        <tr>
+          <th scope="col" class="itemCol prodLine" colspan="2">Your Selection</th>
+          <th class="quantityCol prodLine" scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Delivery</th>
+          <th scope="col">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+% for item in b._items:
+        <tr class="item">
+          <td class="itemCol"><a href="/products/${item.item.original['code'].replace('/','|')}"><img src="/filehandler/${item.item.original['photo']['doc_id']}/${item.item.original['photo']['id']}?size=200x120"/></a></td>
+          <td class="itemCol"><a href="/products/${item.item.original['code'].replace('/','|')}">${item.description.replace('\n','<br />')|n}</a></td>
+          <td class="quantityCol"><input type="text" size="2" value="${item.quantity}" name="item_${item.id}" maxlength="3"/><br /><label><input type="checkbox" value="${item.id}" name="remove"/>Remove</label></td>
+          <td class="price">£${lib.strfprice(item.unit_price)}</td>
+          <td class="price">£${lib.strfprice(item.unit_postage)}</td>
+          <td class="price">£${lib.strfprice((item.unit_price+item.unit_postage)*item.quantity)}</td>
+        </tr>
+% endfor
+        <tr class="total">
+          <td colspan="4"></td>
+          <th>Total</th>
+          <td class="price total">£${lib.strfprice(b.total_price)}</td>
+        </tr>
+        <tr class="buttons">
+          <td colspan="5">
+            <input type="hidden" value="update" name="command"/>
+            <a href="javascript:history.back(-1)" class="continue-button">Continue shopping</a>
+            <a href="/checkout" class="checkout-button">Checkout</a>
+            <input type="submit" title="Update Basket" value="Update Basket" class="update" name="update"/>
+          </td>
+        </tr>
+        </tbody>
+      </table>        
+    </form>
+  </div>
+</div> 
+
+  
+  </div>
+
+<%def name="title()">BASKET!</%def>
