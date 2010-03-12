@@ -14,8 +14,7 @@ def make_product(request, line):
     with C.session() as S:
         product = S.doc_by_view('product/by_code',key=code)
     data = {'request': request, 'product': product}
-    out = templating.render(request, 'shop/product-fragment.html', data, encoding='utf8')
-    return out
+    return templating.render(request, '/gallery/product-fragment.html', data, encoding='utf8')
 
     
 

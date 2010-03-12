@@ -1,0 +1,26 @@
+<%namespace name="lib" module="examplesite.lib.makolib" />
+
+<div class="product-fragment clearfix">
+<div class="image ">
+<img src="/filehandler/${product['photo']['_ref']}/${product['photo']['photo']['id']}?size=300x400" alt="${product['title']}" title="${product['title']}" />
+</div>
+<div class="details">
+  <div class="description">${product['title']}</div>
+  <div class="description">${product['information']}</div>
+% if identity and identity.is_admin():                                                                          
+ <a href="/admin/product/${product['_id']}">Edit ${product['title']}</a>
+% endif  
+
+<div class="options">
+<form method="post" action="/basket">
+<input type="hidden" value="add" name="command"/>
+<input type="hidden" value="${product['_id']}" name="_id"/>
+<input type="hidden" name="_option" value="${product['pricing'][0]['option']}" />
+<div class="price">&pound;${lib.strfprice(product['pricing'][0]['price'])}</div>
+<input type="image" id="addtobasket" class="addtobasket" value="Submit" title="Add to basket" name="_submit" src="http://jcassets.timparkin.co.uk/images/addtobasket.gif" style="padding-top: 20px;" />
+</form>
+</div>
+</div>
+</div>
+
+

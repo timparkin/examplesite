@@ -14,8 +14,9 @@ import logging
 log = logging.getLogger(__name__)
 
 def get_result(self, request):
+    filter = request.GET.get('filter')
     cache_db = request.environ['cache']
-    cache_id = cache.key('photos',self.type, self.facet, self.category)
+    cache_id = cache.key('photos',self.type, self.facet, self.category, filter)
     cache_result = cache_db.get(cache_id)
     P = photoengine.PhotoEngine(request)
     if cache_result:
@@ -45,9 +46,9 @@ def get_prev_next(id, rows):
     for n,p in enumerate(all_photos):
         if p['ref'] == id:
             if n-1 >= 0:
-                prev = all_photos[n-1]['code']
+                prev = all_photos[n-1]['product_code']
             if n+1 < len(rows):
-                next = all_photos[n+1]['code']
+                next = all_photos[n+1]['product_code']
     return prev, next
 
 class Gallery(base.BasePage):
