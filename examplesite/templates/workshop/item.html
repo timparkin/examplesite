@@ -1,0 +1,35 @@
+<%!
+from adminish import md
+from menuish.menu import Navigation, create_sitemap
+%>
+##---------- Prepare Data
+<%
+if '~' in workshop['body']:
+    cs = [p for p in workshop['body'].split('~') if p != '']
+    body = '<div class="firstcolumn">%s</div><div class="column">%s</div>'%(md.md(cs[0]),md.md(cs[1]) )
+else:
+    body = md.md(workshop['body'])
+%>
+##---------- Definitions
+
+<%def name="title()">Learn about landscape photography with Joe Cornish</%def>
+<%def name="body_class()"> workshop</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      ${Navigation(item_class=['firstlast','number'], openall=True, startdepth=1, showroot=False).render_navigation(sitemap, request)|n}
+    </div>
+  </div>
+  <div class="main">
+    <h2>${workshop['title']}</h2>
+    <h3>Course runs from : ${workshop['from_date'].strftime('%d %B %Y')} to ${workshop['to_date'].strftime('%d %B %Y')}</h3>
+    ${body|n}
+  </div>
+</div>
+
+

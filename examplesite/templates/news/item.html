@@ -1,0 +1,35 @@
+<%!
+from adminish import md
+from menuish.menu import Navigation, create_sitemap
+%>
+##---------- Prepare Data
+<%
+if '~' in newsitem['body']:
+    cs = [p for p in newsitem['body'].split('~') if p != '']
+    body = '<div class="firstcolumn">%s</div><div class="column">%s</div>'%(md.md(cs[0]),md.md(cs[1]) )
+else:
+    body = md.md(newsitem['body'])
+%>
+##---------- Definitions
+
+<%def name="title()">${newsitem['title']}</%def>
+<%def name="body_class()"> newsitem</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      ${Navigation(item_class=['firstlast','number'], openall=True, startdepth=1, showroot=False).render_navigation(sitemap, request)|n}
+    </div>
+  </div>
+  <div class="main">
+    <h2>${newsitem['title']}</h2>
+    <h3>${newsitem['date'].strftime('%d %B %Y')}</h3>
+    ${body|n}
+  </div>
+</div>
+
+

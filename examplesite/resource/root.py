@@ -8,7 +8,7 @@ from wsgiapptools import flash
 from formish.fileresource import FileResource
 from formish.filestore import CachedTempFilestore, FileSystemHeaderedFilestore
 
-from examplesite.resource import redirect, gallery, navigation
+from examplesite.resource import redirect, gallery, navigation, items
 from examplesite.lib import base, guard
 
 from examplesite.lib.filestore import CouchDBAttachmentSource
@@ -83,8 +83,20 @@ class RootResource(base.BasePage):
         return PageResource(segments), ()
 
     @resource.child()
+    def gallery(self, request, segments):
+        return gallery.Gallery()
+
+    @resource.child()
     def photos(self, request, segments):
         return gallery.Gallery('photo')
+
+    @resource.child()
+    def news(self, request, segments):
+        return items.News()
+
+    @resource.child()
+    def workshops(self, request, segments):
+        return items.Workshops()
 
     @resource.child('filehandler')
     def filehandler(self, request, segments):

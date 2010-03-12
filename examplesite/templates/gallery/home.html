@@ -1,0 +1,61 @@
+<%inherit file="/page-gallery.html" />
+<%!
+from menuish.menu import Navigation
+import urllib
+%>
+<%namespace name="paging" file="/paging.html"/>
+
+<%def name="body_class()"> galleryhome</%def>
+
+
+<div class="container">
+  <div class="intro">
+    <p>Here you can find the current Joe Cornish work available to purchase.</p>
+    <p>If you want to find out more about about Joe, please visit the Art, Craft and Soul section of the website at the bottom of this page.</p>
+
+  </div>
+  <div class="promopanel">
+    <a href="/photos/location/england.northumberland.coast"><img src="http://jcassets.timparkin.co.uk/images/promopanel-galleryhome.png"/></a>
+  </div>
+</div>
+<hr />
+
+<div class="container" id="gallerymenu">
+
+  <div class="column">
+    <div>
+      <a href="/photos/location?filter=Print" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/prints.png"></a>
+      <h2><a href="/photos/location?filter=Print">Exhibition Prints</a></h2>
+      <p><a href="/photos/location?filter=Print">Photographic prints that are available in various edition sizes.</a></p>
+    </div>
+    <div>
+      <a href="/calendars" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/calendar.png"></a>
+      <h2><a href="/calendars">Calendars</a></h2>
+    </div>
+  </div>
+  <div class="column">
+    <div>
+      <a href="/photos/location?filter=Greetings%20Card" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/cards.png"></a>
+      <h2><a href="/photos/location?filter=Greetings%20Card">Greetings Cards</a></h2>
+      <p><a href="/photos/location?filter=Print">An extensive range of cards, covering most of the British Isles by Joe and fellow photographers.</a></p>
+    </div>
+    <div>
+      <a href="/books" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/books.png"></a>
+      <h2><a href="/books">Books</a></h2>
+    </div>
+  </div>
+  <div class="column last">
+    <div>
+      <a href="/photos/location?filter=Print" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/location.png"></a>
+      <h2><a href="/photos/location?filter=Print">Browse by location</a></h2>
+      <p><a href="/photos/location?filter=Print">Find images and products of a specific area.</a></p>
+    </div>
+    <div>
+      <a href="/photos/subject?filter=Print" class="graphic"><img src="http://jcassets.timparkin.co.uk/images/graphic/subject.png"></a>
+      <h2><a href="/photos/subject?filter=Print">Browse by Subject</a></h2>
+      <p><a href="/photos/subject?filter=Print">Search all products for a particular genre.</a></p>
+    </div>
+  </div>
+</div>
+</div>
+<%def name="title()">Landscape Photography from Yorkshire, Scotland and beyond..</%def>
