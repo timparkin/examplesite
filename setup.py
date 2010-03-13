@@ -19,8 +19,9 @@ setup(name='examplesite',
       zip_safe=False,
       install_requires=[
           # -*- Extra requirements: -*-
-          'restish',
-          'WebError',
+          'adminish',
+          'commerce',
+          'notification',
       ],
       entry_points="""
       # -*- Entry points: -*-
