@@ -1,0 +1,40 @@
+<%inherit file="/body.html" />
+#### STATIC DATA AND MODULES ##############
+<%namespace name="lib" module="examplesite.lib.makolib" />
+<%!
+from adminish import md
+%>
+
+
+#### DATA PREPARATION #####################
+
+
+#### DEFINITIONS ##########################
+<%def name="body_class()">home body-homepage</%def>
+<%def name="page_title()">${page['metadata']['title']}</%def>
+<%def name="page_description()">${page['metadata']['description']}</%def>
+<%def name="page_keywords()">${page['metadata']['keywords']}</%def>
+
+
+#### TEMPLATE #############################
+<div class="leftcolumn">
+	${md.md(page['body'])|n}
+    <p>
+  Browse or purchase Joe's images as prints, cards, calendars, books. 
+
+
+<section class="news-headlines">
+<h2><a href="/news">Latest News</a></h2>
+% for newsitem in news:
+<article class="newsitem">
+<header>
+<h2>${newsitem['title']}</h2>
+<h3>${lib.strford(newsitem['date'], 'dmy')}</h3>
+</header>
+<p>${newsitem['summary']} <a href="${urls.path_qs.child('news').child(newsitem['_id'])}">more</a></p>
+</article>
+% endfor
+</section>
+
+
+
