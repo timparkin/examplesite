@@ -41,7 +41,6 @@ def _authenticate_password(credentials, password, environ):
             return None
     except errors.NotFound:
         return None
-        
     return user['username']
 
 
@@ -57,6 +56,8 @@ class AuthenticatorPlugin(object):
 
     def authenticate(self, environ, identity):
         # Basic sanity check.
+        if 'repoze.who.plugins.auth_tkt.userid' in identity:
+            return identity['repoze.who.plugins.auth_tkt.userid']
         if 'login' not in identity:
             return None
         # Extract the credentials from the identity.

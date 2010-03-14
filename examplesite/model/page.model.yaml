@@ -12,14 +12,23 @@ fields:
         type: TextArea
         css_class: markitup
 
-    - name: pagetype
+    - name: template
       widget:
         type: SelectChoice
         options: 
-          - [page-content.html,Default]
-          - [page-home.html,Home]
-          - [page-gallery.html,Gallery]
-          - [page-visit.html,Visit]
+          - [content.html,Default]
+          - [home.html,Home]
+          - [gallery.html,Gallery]
+          - [visit.html,Visit]
+
+    - name: metadata
+      type: Structure
+
+    - name: metadata.title
+    - name: metadata.description
+    - name: metadata.keywords
+
+
 
 
 views:
