@@ -59,6 +59,8 @@ def setup_environ(app, global_conf, app_conf):
         environ['adminish'] = adminish_config
         environ['searcher'] = index.Searcher(db, app_conf['index_dir'], adminish_config = adminish_config)
         environ['notification'] = notification_service
+        environ['app_conf'] = app_conf
+        environ['global_conf'] = global_conf
         return app(environ, start_response)
 
     return application
