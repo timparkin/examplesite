@@ -2,7 +2,18 @@
 #### STATIC DATA AND MODULES ##############
 <%!
 import yaml
-from menuish.menu import Navigation
+from menuish.menu import Navigation, create_sitemap
+sitemap_yaml = """
+- [root, Home, 1, {}]
+- [root.gallery,Gallery/Shop, 2, {}]
+- [root.visit,Visit Us, 3, {}]
+- [root.news,News, 4, {}]
+- [root.about,About, 5, {}]
+- [root.workshops,Workshops, 6, {}]
+- [root.basket,Basket, 7, {}]
+- [root.contact,Contact, 8, {}]
+"""
+sitemap = create_sitemap(yaml.load(sitemap_yaml))
 %>
 
 

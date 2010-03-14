@@ -1,1294 +1,461 @@
-/* Global */
-body {
-  padding-bottom: 20px;
+/*
+ Font Face definitions
+*/
+
+@font-face{ /* for IE */
+    font-family:CasinoHand;
+      src:url(/fonts/CasinoHand.eot);
 }
-a, a:hover, a:link, a:visited {
-  outline:none;
-  color: #555;
-}
-#gallerymenu a {
-  text-decoration: none;
-}
-em {
-  font-style: italic;
+@font-face { /* for non-IE */
+    font-family:CasinoHand;
+      src:url(//:) format("No-IE-404"),url(/fonts/CasinoHand.ttf) format("truetype");
 }
 
-p {
-  margin-bottom: 0.5em;
+@font-face{ /* for IE */
+    font-family:Skia;
+      src:url(/fonts/Skia.eot);
 }
+@font-face { /* for non-IE */
+    font-family:Skia;
+      src:url(//:) format("No-IE-404"),url(/fonts/Skia.ttf) format("truetype");
+}
+/*
+  Eric Meyer - Reset
+*/
 
-#body a {
-  color: #000;
-}
-.content p {
-  line-height: 140%;
-  margin-bottom: 1em;
-}
-
-#body h1 {
-  color: #333;
-  font-size: 130%;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-}
-
-#body h2 {
-  color: #333;
-  font-size: 120%;
-  margin-bottom: 0.5em;
-  margin-top: 1em;
-  font-weight: bold;
-}
-
-#body h3 {
-  color: #4E5871;
-  font-size: 115%;
-  margin-top: 0.5em;
-  margin-bottom: 0.2em;
-  font-family: Trebuchet MS, Helvetica, sans-serif;
-  font-style: italic;
-}
-
-#body h4 {
-  font-size: 115%;
-  margin-top: 0.5em;
-  margin-bottom: 0.2em;
-  font-weight: bold;
-}
-
-#body img.para {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-/* Structural */
-html {
-  background: #DBD9D4 url(http://jcassets.timparkin.co.uk/images/bg-footer.gif) repeat top;
-  color: #444;
-}
-
-body {
-  background: #DBD9D4 url(http://jcassets.timparkin.co.uk/images/bg-footer.gif) repeat top;
-  text-align: center;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
 }
 
-#main {
-  background: #DBD9D4 url(http://jcassets.timparkin.co.uk/images/bg-footer-shadow.gif) repeat-x bottom;
-}
-
-
-/* Header and logos */
-
-#header {
-  margin: 0 auto 10px auto;
-  width: 976px;
-  height: 70px;
-  position:relative;
-}
-
-#header h1 {
-  position: absolute;
-  height: 50px;
-  width: 190px;
-  top: 18px;
-  left:0;
-  text-indent: -1000em;
-  margin: 0;
-}
-
-#header h1 a {
-  display: block;
-  height: 50px;
-  width: 190px;
-}
-
-.body-homepage #header h1 {
-  background: url(http://jcassets.timparkin.co.uk/images/bg-logo-jc.gif) no-repeat;
-}
-
-.body-homepage .main .homepage1,
-.body-homepage .main .homepage3,
-.body-homepage .main .homepage4,
-.body-homepage .main .homepage5,
-.body-homepage .main .homepage6
-{
-   margin-right: 15px;
-}
-.body-homepage .main .homepage1,
-.body-homepage .main .homepage2,
-.body-homepage .main .homepage3,
-.body-homepage .main .homepage4,
-.body-homepage .main .homepage5,
-.body-homepage .main .homepage6,
-.body-homepage .main .homepage7
-{
-   margin-bottom: 15px;
-} 
-.panel1,
-.panel3,
-.panel4,
-.panel5,
-.panel6
-{
-  margin-right: 15px;
-}
-.panel1,
-.panel2,
-.panel3,
-.panel4,
-.panel5,
-.panel6,
-.panel7
-{
-  margin-bottom: 15px;
-}
-
-
-#header h1 {
-  background: url(http://jcassets.timparkin.co.uk/images/bg/bg-logo.png) no-repeat;
-}
-
-/* Main navigation - in headers section 
- *
- * There are two styles of body page at the moment. One with a wide left hand column
- * which skips the home menu entry on the main navigation (called homepage) and one
- * with a narrower left hand column used from most pages (called standard) which is 
- * designed to work with a left hand menu
- *
- */
-
-#header ul {
-  margin-left: 0;
-  padding-left: 0;
-  white-space: nowrap;
-  position:absolute;
-  right: 0;
-  top: 20px;
-}
-
-/* Top level navigation */
-
-.body-homepage #header ul {
-  width: 607px;
-}
-
-#header ul {
-  width: 677px;
-}
-
-#header  li {
-  position: absolute;
-  list-style-type: none;
-  font-size: 110%;
-}
-
-#nav-root {
-  position: absolute;
-  left: 0;
-}
-
-.body-homepage #nav-gallery {
-  left: 0;
-}
-.body-homepage #nav-visit {
-  left: 116px;
-}
-.body-homepage #nav-news {
-  left: 195px;
-}
-.body-homepage #nav-about {
-  left: 257px;
-}
-.body-homepage #nav-workshops {
-  left: 351px;
-}
-.body-homepage #nav-basket {
-  left: 452px;
-}
-.body-homepage #nav-contact {
-  left: 523px;
-}
-
-
-#nav-gallery {
-  left: 64px;
-}
-#nav-visit {
-  left: 180px;
-}
-#nav-news {
-  left: 259px;
-}
-#nav-about {
-  left: 321px;
-}
-#nav-workshops {
-  left: 415px;
-}
-#nav-basket {
-  left: 516px;
-}
-#nav-contact {
-  left: 587px;
-}
-
-
-#header ul a {
-  padding: 3px 10px;
+header, section, article, nav {
   display: block;
 }
 
-#header ul a:link, #header ul a:visited {
-  color: #444;
-  text-decoration: none;
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
 }
-
-#header ul a:hover, #header ul .selected a, #header ul .selectedpath a {
-  color: #000;
-  text-decoration: none;
-}
-
-
-#body {
-  position: relative;
-  margin: 0 auto 0 auto;
-  text-align:left;
-  width: 968px;
-  padding-bottom:28px;
-}
-
-
-
-
-/* Footer */
-#footer {
-  background: url(http://jcassets.timparkin.co.uk/images/bg-footer.gif) repeat top;
-  color: #444;
-  padding-top: 7px;
-  padding-bottom: 10em;
-  height: 200px;
-}
-
-#footercontent {
-
-  margin: 0 auto 0 auto;
-  text-align:left;
-  width: 968px;
-  font-size:95%;
-}
-
-#footercontent li {
-  border-top:1px solid #333;
-}
-
-#portrait-jc1, #portrait-jc2, #portrait-jc3 {
-  float: right;
-  margin-left: 19px;
-  margin-top: 50px;
-}
-
-#footerintro {
-  width: 320px;
-  float: left;
-}
-
-#footerintro h2 {
-  text-indent: -900em;
-  background-image: url(http://jcassets.timparkin.co.uk/images/bg-footer-artcraftandsoul-homepage.png);
-  background-repeat: no-repeat;
-  width: 200px;
-  height: 41px;
-  margin-top:5px;
-  margin-bottom: 10px;
-}
-
-#footerintro p {
-  margin-left: 28px;
-}
-
-#footerintro a {
-  text-decoration: none;
-  font-weight: bold;
-}
-
-
-/* Subnav (Content) */
-#subnav {
-  position: relative;
-  width: 243px;
-  left: 2px;
-  font-family: Trebuchet MS, Helvetica, sans-serif;
-}
-
-
-#subnav ul {
-  margin-left: 53px;
-  font-size: 120%;
-}
-
-#subnav li {
-  margin: 4px 0;
-}
-
-#subnav a {
-  text-decoration: none;
-  font-size: 100%;
-  color: #414859;
-}
-
-#subnav ul ul {
-  margin-left: 10px;
-}
-#subnav ul ul a {
-  font-size: 80%;
-  font-style: italic;
-  color: #616879;
-}
-#subnav ul ul li.selected a {
-  font-size: 80%;
-  font-style: italic;
-  color: #333;
-}
-#subnav li.selected ul  a {
-  font-size: 80%;
-  font-style: italic;
-  color: #818899;
-}
-
-#subnav li.selected a {
-  text-decoration: none;
-  font-size: 100%;
-  color: #333;
-}
-
-.leftpanel a.selected {
-  font-weight: bold;
-}
-
-
-
-/* Site Wide Styles */
-
-.newsitem {
-  margin-bottom: 1em;
-}
-
-.newsitem a.more {
-  padding-left: 10px;
-}
-
-
-/* Joes Section Structural */
-
-.body-homepage .leftcolumn {
-  float: left;
-  width: 343px;
-  margin-right: 30px;
-  margin-top: 20px;
-  font-size: 97%;
-}
-
-.body-homepage .main {
-  float: left;
-  width: 593px;
-}
-
-/* Joes Section Styles */
-
-.jcgicon {
-  margin-left: 50px;
-  padding-top: 0px;
-  vertical-align: top;
-}
-
-
-.leftcolumn {
-  float: left;
-  width: 276px;
-  margin-right: 30px;
-  margin-top: 20px;
-  font-size: 87%;
-}
-
-.leftcolumn p {
-  font-size: 120%;
-}
-
-.main {
-  float: left;
-  width: 660px;
-}
-
-.galleryhome .intro, .galleryhome .artfinder, .galleryhome .promopanel, .galleryhome .newsandgalleries {
-  font-size: 87%;
-}
-
-.galleryhome .intro, .galleryhome .artfinder {
-  float: left;
-  width: 276px;
-  margin-right: 30px;
-}
-.galleryhome .intro {
-  margin-top: 20px;
-}
-
-.galleryhome .promopanel, .galleryhome .newsandgalleries {
-  float: left;
-  width: 645px;
-}
-
-.galleryhome .promopanel {
-  margin-top: 20px;
-}
-
-.galleryhome .search_results {
-  float: left;
-  width: 645px;
-}
-
-.galleryhome .search_result {
-  float: left;
-  margin-right: 30px;
-  font-family: verdana, arial, geneva, helvetica, sans-serif;
-  font-size: 80%;
-}
-.galleryhome .search_result.last {
-  margin-right: 0px;
-}
-.galleryhome .search_result a.title {
-  text-decoration: none;
+body {
+  font-size: 12px
+  line-height: 21px;
   color: #999;
-  display: block;
-  height: 40px
+  background: #000;
+  font-family: arial, verdana;
+}
+ol, ul {
+  list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
 }
 
-.categories ul {
-  margin-left: 10px; 
+
+/*
+  Variable Grid System.
+  Learn more ~ http://www.spry-soft.com/grids/
+  Based on 960 Grid System - http://960.gs/
+
+  Licensed under GPL and MIT.
+*/
+
+
+/* Containers
+----------------------------------------------------------------------------------------------------*/
+#page {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
 }
 
-#search-keywords--field  {
-  width: 190px;
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+  display:inline;
   float: left;
-}
-#search-keywords--field input  {
-  width: 180px;
-}
-
-#search-keywords--field label {
-  display: None;
-}
-#search {
- overflow: hidden;
-}
-#search .actions {
-  float: left;
-  margin-left: 20px
-}
-.artfinder #search {
-  width: 277px;
-}
-
-.artfinder .formish-form {
- border: 0
-}
-
-.artfinder #search-keywords {
-  width: 200px;
-}
-
-.galleryhome .newsandevents { 
-  float:left;
-  width: 46%;
-  margin-right: 3%;
-}
-.galleryhome .galleries {
-  float:left;
-  width: 46%;
-  margin-left: 3%;
-}
-
-.galleryhome .galleries .container {
   position: relative;
-  padding-left: 100px;
-  height: 120px;
-}
-
-.galleryhome .container .galleries img {
-  position: absolute;
-  top:0;
-  left: 0;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background-color: #B1AEAA;
-  margin-bottom: 20px;
-}
-
-.main .firstcolumn {
-  width: 46%;
-  float: left;
-}
-
-.main .column {
-  width: 46%;
-  margin-left:4%;
-  float: left;
-}
-
-.column div {
-  min-height: 100px;
-  _height: 100px;
-}
-.column div div {
-  height : auto;
-}
-
-#contact .field {
-  clear: both;
-}
-
-/* Gallery Styles */
-
-.categories a {
-  text-decoration: none;
-}
-
-.categories ul {
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-}
-.categories ul ul {
-   font-family: Arial, verdana, helvetica, sans; 
-  font-size: 95%;
-}
-
-#footer #joes-section {
-  float: left;
-  width: 362px;
-}
-
-#joes-section a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/bg-art-craft-soul.png) no-repeat;
-  width: 353px;
-  height: 47px;
-  display: block;
-  text-indent: -900em;
-}
-
-#quick-search, #quick-subscribe {
-  float: left;
-}
-
-#quick-search, #quick-subscribe {
-  float: left;
-}
-
-#quick-search label {
-  display: none;
-}
-
-
-#quick-search {
-  width: 280px;
-}
-
-#quick-search .formish-form {
-  border: 0;
-}
-#footer #quick-search .formish-form input {
-  margin-left: 0
-}
-
-#quick-search .header {
-  background: url(http://jcassets.timparkin.co.uk/images/bg-quicksearch.png) no-repeat;
-  text-indent: -900em;
-  height: 14px;
-}
-
-#quick-subscribe {
-  width: 600px;
-}
-
-#quick-subscribe .form-name {
+  margin-left: 10px;
   margin-right: 10px;
 }
 
-#quick-subscribe .form-name label, #quick-subscribe .form-email label {
-  width: 4em;
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+.alpha {
+  margin-left: 0;
 }
 
-#quick-subscribe .header {
-  background: url(http://jcassets.timparkin.co.uk/images/bg-quicksubscribe.png) no-repeat;
-  text-indent: -900em;
-  height: 14px;
-}
-
-/* Content */
-#content {
-  float: left;
-  width: 423px;
-  margin-left:143px;
-  margin-top: 15px;
-}
-
-.main li {
-  padding-left: 5px;
-  list-style: square;
-  margin-left: 20px;
-}
-.main ul {
-  margin-bottom: 1em;
-}
-
-.main blockquote {
-  font-style: italic;
-  margin-left: 10px;
-}
-
-.main strong {
-  font-weight: bold;
-}
-
-/* Art Finder */
-
-
-.artfinder input.action {
-  width: 5em;
-  float: left;
-}
-
-.artfinder label, .artfinder .label {
-  width: 60px  ;
-  float: left;
-  margin: 0 0 5px 0;
-}
-
-.artfinder .and {
-  width: 30px;
-  float: left;
-  margin-left: 10px;
-}
-
-.artfinder select {
-  float: left;
-}
-
-#location, #subject, #type {
-  width: 200px;
-}
-
-#pricefrom, #priceto {
-  width: 80px;
-}
-
-.price {
-  font-family: arial, verdana, helvetica, sans;
-  font-size: 110%;
-  color: #000;
-  font-weight: bold;
-}
-
-#advancedsearch input.action {
-  margin-left: 203px;
-  margin-top: 10px;
-}
-
-
-/* Product List Page Styles */
-
-.shop .leftpanel {
-  float: left;
-  width: 276px;
-  margin-right: 30px;
-  margin-top: 20px;
-  font-size: 87%;
-}
-
-.shop .leftpanel.photo {
-  margin-top: 0;
-  font-size: 100%;
-  float: left;
-  width: 276px;
-  margin-right: 30px;
-}
-
-
-.shop .main {
-  float: left;
-  width: 660px;
-}
-
-/* Code for Product List */
-
-.product {
-  float: left;
-  margin-right: 17px;
-  margin-bottom: 1.4em;
-  font-size: 85%;
-  font-family: Trebuchet MS, Helvetica, sans-serif;  
-}
-
-.product.last {
+.omega {
   margin-right: 0;
 }
 
-.productrow {
-  overflow: auto;
+/* Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+#page .grid_1 {
+  width:60px;
 }
 
-#body .product a {
- margin-top: 0.3em;
-  display: block;
-  text-align: center;
-  color: #4E5871;
-  text-decoration: none;
+#page .grid_2 {
+  width:140px;
 }
 
-#photos {
-  position: relative;
-  
-}
-#paging-numresults {
-  position: absolute;
-  left: 0;
-  top: -28px;
-}
-#bottom #paging-numresults {
-  position: absolute;
-  left: 0;
-  top: -5px;
-}
-#body #paging {
-  position: absolute;
-  right:40px;
-  top: -28px;
-  height: 0;
-  width: 150px;
-  margin:0;
-  padding: 0;
-  font-family: arial, helvetica, sans-serif;
-  font-size: 11px;
-}
-#photonav {
-  position: absolute;
-  right:42px;
-  top: -28px;
-  height: 0;
-  width: 150px;
-  margin:0;
-  padding: 0;
-  font-family: arial, helvetica, sans-serif;
-  font-size: 11px;
-}
-#body #bottom {
-position: relative;
-}
-#body #bottom #paging {
-  position: relative
-  height: 0;
-  width: 150px;
-  margin:20px 0 0 0 ;
-  padding: 0;
-  font-family: arial, helvetica, sans-serif;
-  font-size: 11px;
+#page .grid_3 {
+  width:220px;
 }
 
-#body #prev a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/paging-prev.png) 0 0 no-repeat;
-  text-indent: -1000em;
-  width: 35px;
-  height: 18px;
-  display: block;
-  position: absolute;
-  right: 70px;
-  top: 0;
-}
-#body #next a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/paging-next.png) 0 0 no-repeat;
-  text-indent: -1000em;
-  width: 35px;
-  height: 18px;
-  display: block;
-  position: absolute;
-  right: 0px;
-  top: 0;
-}
-#body #up a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/paging-up.png) 0 0 no-repeat;
-  text-indent: -1000em;
-  width: 22px;
-  height: 18px;
-  display: block;
-  position: absolute;
-  right: 43px;
-  top: 0;
+#page .grid_4 {
+  width:300px;
 }
 
-#body #paging #paging-prev {
-  position: absolute;
-  top: 0;
-  right: 70px;
-}
-#body #paging #paging-next {
-  position: absolute;
-  top: 0;
-  right: 0px;
-}
-#body #paging-prev a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/paging-prev.png) 0 0 no-repeat;
-  text-indent: -1000em;
-  width: 35px;
-  height: 18px;
-  display: block;
-}
-#body #paging-next a {
-  background: transparent url(http://jcassets.timparkin.co.uk/images/paging-next.png) 0 0 no-repeat;
-  text-indent: -1000em;
-  width: 35px;
-  height: 18px;
-  display: block
+#page .grid_5 {
+  width:380px;
 }
 
-#numpages {
-  position: absolute;
-  top: 18px;
-  width: 62px;
-  left: 8px;
-  
+#page .grid_6 {
+  width:460px;
 }
 
-/* Standard Forms Stuff */
-
-form {
-  margin: 10px 0 5px 0;
+#page .grid_7 {
+  width:540px;
 }
 
-label {
-  float: left;
-  width:70px;
-  font-color: #FFF;
-  padding: 3px 0;
-  color: #444;
-  margin-bottom:5px;
+#page .grid_8 {
+  width:620px;
+}
+
+#page .grid_9 {
+  width:700px;
+}
+
+#page .grid_10 {
+  width:780px;
+}
+
+#page .grid_11 {
+  width:860px;
+}
+
+#page .grid_12 {
+  width:940px;
 }
 
 
 
+/* Prefix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
-
-/* Footer Form Stuff */
-#footer #text, #footer #name, #footer #hkilkr-hkilkr {
-  border: 1px solid #888;
-  background-color: #B5B3AF;
-  padding: 3px 1px;
-  color: #444;
-  font-weight: bold;
-  font-size:100%;
-  margin-bottom:5px;
+#page .prefix_1 {
+  padding-left:80px;
 }
 
-#footer #text {
-  width: 140px;
+#page .prefix_2 {
+  padding-left:160px;
 }
 
-#footer #name, #footer #email {
-  width: 120px;
+#page .prefix_3 {
+  padding-left:240px;
 }
 
-#footer form div {
-  float: left;
+#page .prefix_4 {
+  padding-left:320px;
 }
 
-#quick-subscribe input.action {
-  width: 120px;
-  float: left;
+#page .prefix_5 {
+  padding-left:400px;
 }
 
-#footer input.action {
-  border: 0;
-  border: 1px solid #888;
-  background-color: #A9A7A2;
-  width: 140px;
-  color: #444 ;
-  margin-left: 20px;
-  height: 1.9em;
+#page .prefix_6 {
+  padding-left:480px;
+}
+
+#page .prefix_7 {
+  padding-left:560px;
+}
+
+#page .prefix_8 {
+  padding-left:640px;
+}
+
+#page .prefix_9 {
+  padding-left:720px;
+}
+
+#page .prefix_10 {
+  padding-left:800px;
+}
+
+#page .prefix_11 {
+  padding-left:880px;
 }
 
 
 
-/* ---------- ADMIN PANEL ------------- */
+/* Suffix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
 
-.admin-panel {
-  text-align: left;
+#page .suffix_1 {
+  padding-right:80px;
 }
 
-.admin-panel .formish-form .widget-checkboxmultichoice .inputs {
+#page .suffix_2 {
+  padding-right:160px;
+}
+
+#page .suffix_3 {
+  padding-right:240px;
+}
+
+#page .suffix_4 {
+  padding-right:320px;
+}
+
+#page .suffix_5 {
+  padding-right:400px;
+}
+
+#page .suffix_6 {
+  padding-right:480px;
+}
+
+#page .suffix_7 {
+  padding-right:560px;
+}
+
+#page .suffix_8 {
+  padding-right:640px;
+}
+
+#page .suffix_9 {
+  padding-right:720px;
+}
+
+#page .suffix_10 {
+  padding-right:800px;
+}
+
+#page .suffix_11 {
+  padding-right:880px;
+}
+
+
+
+/* Push Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+#page .push_1 {
+  left:80px;
+}
+
+#page .push_2 {
+  left:160px;
+}
+
+#page .push_3 {
+  left:240px;
+}
+
+#page .push_4 {
+  left:320px;
+}
+
+#page .push_5 {
+  left:400px;
+}
+
+#page .push_6 {
+  left:480px;
+}
+
+#page .push_7 {
+  left:560px;
+}
+
+#page .push_8 {
+  left:640px;
+}
+
+#page .push_9 {
+  left:720px;
+}
+
+#page .push_10 {
+  left:800px;
+}
+
+#page .push_11 {
+  left:880px;
+}
+
+
+
+/* Pull Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+#page .pull_1 {
+  left:-80px;
+}
+
+#page .pull_2 {
+  left:-160px;
+}
+
+#page .pull_3 {
+  left:-240px;
+}
+
+#page .pull_4 {
+  left:-320px;
+}
+
+#page .pull_5 {
+  left:-400px;
+}
+
+#page .pull_6 {
+  left:-480px;
+}
+
+#page .pull_7 {
+  left:-560px;
+}
+
+#page .pull_8 {
+  left:-640px;
+}
+
+#page .pull_9 {
+  left:-720px;
+}
+
+#page .pull_10 {
+  left:-800px;
+}
+
+#page .pull_11 {
+  left:-880px;
+}
+
+
+
+
+/* Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
   clear: both;
-}
-
-.admin-panel .formish-form .widget-checkboxmultichoicetree .inputs label {
-  margin-left:10px;
-  font-size:80%;
-  font-style:italic;
-  float: none;
-  display:inline;
-  color:#000;
-}
-
-.admin-panel .formish-form .widget-checkboxmultichoicetree li {
-  list-style: none;
-
-}
-
-.admin-panel .formish-form .widget-checkboxmultichoicetree ul {
-  margin-left: 30px;
-}
-
-
-
-
-
-
-/* ------------- Hacks and Plugins ------- */
-
-.clearfix:after, .container:after {
-    content: "."; 
-    display: block; 
-    height: 0; 
-    clear: both; 
-    visibility: hidden;
-}
-
-.clearfix, .container {display: inline-block;}
-
-/* Hides from IE-mac \*/
-* html .clearfix, * html .container {height: 1%;}
-.clearfix, .container {display: block;}
-/* End hide from IE-mac */
-
-/* These are standard sIFR styles... do not modify */
-
-.sIFR-flash {
-  visibility: visible !important;
-  margin: 0;
-}
-
-.sIFR-replaced {
-  visibility: visible !important;
-}
-
-span.sIFR-alternate {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 0;
   display: block;
   overflow: hidden;
-}
-
-
-
-/* Basket */
-
-.basket table {
-  width:100%;
-}
-
-.basket th, .basket td {
-  padding:10px;
-}
-
-.basket input {
-  border:1px solid #666;
-  padding: 1px 5px;
-}
-
-.basket th {
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
-  text-transform: uppercase;
-  color:#000;
-}
-
-.total th {
-  border-bottom:0;
-}
-
-th.itemCol,
-th.quantityCol {
-  text-align: left;
-}
-th {
-  text-align: right;
-}
-
-.buttons {
-  margin-top:20px;
-}
-
-.basket .description {
-  width: 100%;
-}
-.total.price {
-  color: #000;
-  font-weight: bold;
-  border-top: 1px solid #666;
-}
-
-.basket .buttons th, .basket .buttons td {
-  padding:0;
-  padding-top:20px;
-}
-
-.basket td {
-  vertical-align:top;
-}
-
-.basket td strong {
-  color: #000;
-  font-size:110%;
-}
-
-.basket .header {
-  color: #000;
-}
-
-.basket a {
-  text-decoration: none;
-}
-
-label.remove em {
-  color: #999;
-  padding-top:10px;
-}
-
-dd {
-  position:relative;
-}
-
-.price {
-  font-size: 12px;
-  text-align: right;
-}
-
-
-#addtobasket {
-float: right;
-}
-
-
-#addtobasket input {
-  border:0;
-  background-color: #000;
-  color: #FFF;
-  padding:0;
-  margin:0;
-}
-
-a.checkout {
-  display: block;
-  background-image: url(http://jcassets.timparkin.co.uk/images/checkout.png);
-  background-repeat: no-repeat;
-  text-indent: -1000px;
-  width: 214px;
-  height: 27px;
-}
-
-a.checkout-button,
-a.continue-button {
-  display: block;
-  background-color: #FFF;
-  border:1px solid #666;
-  padding: 3px 5px 1px 5px;
-  font-family: arial,helvetica,clean,sans-serif;
-  float: left;
-  height: 17px;
-  font-size: 99%;
-  margin-left: 10px;
-
-}
-
-input.update {
-  float: right;
-
-}
-
-.path-contact .formish-form {
-  border: 0;
-}
-
-.path-contact .formish-form textarea {
-  width: 350px;
-}
-
-blockquote p {
-  margin: 0;
-  margin-left: 5px;
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-}
-
-.radiooption {
-  display: block;
-  float: right;
-  margin-left: 10px;
-}
-
-#navcontainer { margin-left: 0px; }
-
-/*Fat Erik's Breadcrumbs*/
-#navlist
-{
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-#navlist li
-{
-display: inline;
-padding: 0;
-margin: 0;
-}
-
-#navlist li:before { content: "> "; }
-#navlist li:first-child:before { content: ""; }
-
-select {
-  font-size: 12px;
-}
-
-.options {
-  padding-top: 5px;
-  margin-top: 5px;
-  border-top: 1px dotted #444;
-  border-bottom: 1px dotted #444;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-}
-
-table td {
-  font-family: arial, helvetica, sans;
-  color: #666;
-  font-size: 12px;
-}
-
-.framed {
-width: 80px; 
-padding: 2px 2px 2px 20px; 
-text-align: right;
-}
-
-table .optionprice {
-  text-align: right;
-  padding-left: 10px
-}
-
-div.moresizes {
-  display: none;
-}
-
-
-.column {
-  width: 300px;
-  margin-right: 20px;
-  float: left;
-}
-.column.last {
-  margin-right: 0;
-}
-.column div {
-  clear: left;
-  margin-bottom: 50px;
-}
-#body .column div h2 {
- font-family: arial, verdana, helvetica, sans;
- color: #4D5871;
-  font-size: 90%;
-padding-top: 20px;
-}
-
-.graphic {
-  display: block;
-  float: left;
-  margin-right: 8px;
-}
-
-
-
-/*IE workaround*/
-/*All IE browsers*/
-* html #navlist li
-{
-background-image: url("http://jcassets.timparkin.co.uk/images/gt.gif");
-background-repeat: no-repeat;
-background-position: 0 50%;
-padding: 0 0.5em 0 1em;
-margin: 0 1em 0 -1em;
-}
-
-#visit_gallery {
-  padding-top: 180px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-area {
- cursor: pointer;
- cursor: hand;
-}
-
-#map {
-  float: left;
-  margin-left: 305px;
-  margin-top: 50px;
-}
-
-/*Win IE browsers - hide from Mac IE\*/
-* html #navlist { height: 1%; }
-
-* html #navlist li
-{
-display: block;
-float: left;
-}
-
-.formish-form ul {
-    margin-left: 20px;
-}
-
-.product-fragment {
-  margin-bottom: 50px;
-  zoom: 1;
-}
-
-.product-fragment .image {
-  float: left;
-  width: 350px;
-}
-.product-fragment .details {
-
-  float: left;
-  width: 300px;
-}
-
-/*End hide*/
-/*Mac IE 5*/
-* html #navlist li:first-child { background-image: none; }
-
-
-
-/* Hide Adblock Object tab: the text should show up just fine, not poorly with a tab laid over it. */
-.sIFR-flash + div[adblocktab=true] {
-  display: none !important;
-}
-
-/* These "decoy" styles are used to hide the browser text before it is replaced... the negative-letter spacing in this case is used to make the browser text metrics match up with the sIFR text metrics since the sIFR text in this example is so much narrower... your own settings may vary... any weird sizing issues you may run into are usually fixed by tweaking these decoy styles */
-
-.sIFR-hasFlash h2.sifr {
   visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+
+.clearfix:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+
+#page {
+  width: 1000px;
+  margin: 0 auto 0 auto;
+  position: relative;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.05em;
+  font-family: CasinoHand;
+  color: #DABD94;
+  font-style: italic;
+  font-weight: normal;
+}
+
+header {
+  margin: 40px 0 20px 0;
+}
+
+nav {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+nav ul li {
+  font-size: 16px;
+  font-family: Skia;
+  display: inline;
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #89775D;
+}
+
+nav ul li.selected a {
+  color: #DABD94;
+}
