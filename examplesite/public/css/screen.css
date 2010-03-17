@@ -42,8 +42,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   vertical-align: baseline;
 }
 
-header, section, article, nav {
+header, section, article, nav, footer {
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 /* remember to define focus styles! */
@@ -54,8 +56,8 @@ body {
   font-size: 12px
   line-height: 21px;
   color: #999;
-  background: #000;
   font-family: arial, verdana;
+  background: #333 url(/images/bg/1280-dropshadow-bg.png) repeat-y center;
 }
 ol, ul {
   list-style: none;
@@ -424,6 +426,7 @@ blockquote, q {
   position: relative;
 }
 
+
 h1 {
   font-size: 40px;
   line-height: 1.05em;
@@ -433,7 +436,12 @@ h1 {
   font-weight: normal;
 }
 
-header {
+h1 a {
+  text-decoration: none;
+  color: #DABD94;
+}
+
+#masthead {
   margin: 40px 0 20px 0;
 }
 
@@ -459,3 +467,19 @@ nav ul li a {
 nav ul li.selected a {
   color: #DABD94;
 }
+
+section.panel h1 {
+  font-size: 34px;
+}
+
+article.photo h1 {
+  text-align: right;
+  font-size: 30px;
+}
+
+article.news h1 {
+ font-size: 20px;
+ font-family: Skia;
+ color: #CCC;
+}
+

@@ -17,24 +17,33 @@ from adminish import md
 
 
 #### TEMPLATE #############################
-<div class="leftcolumn">
-	${md.md(page['body'])|n}
-    <p>
-  Browse or purchase Joe's images as prints, cards, calendars, books. 
 
-
-<section class="news-headlines">
-<h2><a href="/news">Latest News</a></h2>
-% for newsitem in news:
-<article class="newsitem">
-<header>
-<h2>${newsitem['title']}</h2>
-<h3>${lib.strford(newsitem['date'], 'dmy')}</h3>
-</header>
-<p>${newsitem['summary']} <a href="${urls.path_qs.child('news').child(newsitem['_id'])}">more</a></p>
+<article class="photo">
+<img class="photo" src="/images/graphic/homephoto-temp.png" />
+<h1>Launching Attack - Siberia 2007</h1>
 </article>
+##	${md.md(page['body'])|n}
+
+
+<section class="panel grid_3">
+  <h1>Galleries</h2>
+</section>
+
+<section class="panel grid_6">
+  <h1><a href="/news">News</a></h1>
+% for newsitem in news:
+  <article class="news summary">
+    <header>
+      <h1>${newsitem['title']}</h1>
+      <h2>${lib.strford(newsitem['date'], 'dmy')}</h2>
+    </header>
+    <p>${newsitem['summary']} <a href="${urls.path_qs.child('news').child(newsitem['_id'])}">more</a></p>
+  </article>
 % endfor
 </section>
 
+<section class="panel grid_3">
+aa
+</section>
 
 
