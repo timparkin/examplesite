@@ -13,43 +13,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-def get_result(self, request):
-    filter = request.GET.get('filter')
-    cache_db = request.environ['cache']
-    cache_id = cache.key('photos',self.type, self.facet, self.category, filter)
-    cache_result = cache_db.get(cache_id)
-    P = photoengine.PhotoEngine(request)
-    if cache_result:
-        result = cache_result['data']
-    else:
-        result = P.search_products(self.facet, self.category)
-        result.update( {'type': self.type, 'facet': self.facet, 'category': self.category} )
-        photolist = photoordering.PhotoList()
-        photolist.add(result['photos'])
-        ordered_photos = photolist.process()
-        result['opdict'] = [[p.photodict for p in row] for row in ordered_photos]
-        cache_db.update( [ {'_id': cache_id, 'data': result} ] )
-    p = paged_list(request, result['opdict'], max_pagesize=5)
-    page_of_ordered_photos = p['items']
-    result.update( {'p':Paging(request,p), 'rows': page_of_ordered_photos} )
-    allcategories = P.categories()
-    result.update( {'allcategories': allcategories} )
-    
-    return result
 
-def get_prev_next(id, rows):
-    prev = next = None
-    all_photos = []
-    for row in rows:
-        for p in row:
-            all_photos.append(p)
-    for n,p in enumerate(all_photos):
-        if p['ref'] == id:
-            if n-1 >= 0:
-                prev = all_photos[n-1]['product_code']
-            if n+1 < len(rows):
-                next = all_photos[n+1]['product_code']
-    return prev, next
 
 class Gallery(base.BasePage):
 
@@ -64,6 +28,7 @@ class Gallery(base.BasePage):
     @templating.page('/gallery/home.html')
     def get(self, request):
         return {}
+
 
 class Facet(base.BasePage):
 
@@ -80,7 +45,7 @@ class Facet(base.BasePage):
     def get(self, request):
         P = photoengine.PhotoEngine(request)
         allcategories = P.categories()
-        result = {'type': self.type, 'facet': self.facet, 'category': self.category} 
+        result = {'type': self.type, 'facet': self.facet, 'category': self.category}
         result.update( {'allcategories': allcategories} )
         return result
 
@@ -99,8 +64,8 @@ class Category(base.BasePage):
     @resource.GET()
     @templating.page('/gallery/category.html')
     def get(self, request):
-        return get_result(self, request)
-   
+        return photoengine.get_result(self, request)
+
 
 class Item(base.BasePage):
 
@@ -113,13 +78,13 @@ class Item(base.BasePage):
     @resource.GET()
     @templating.page('/gallery/product.html')
     def get(self, request):
-        result = get_result(self, request)
+        result = photoengine.get_result(self, request)
         C = request.environ['couchish']
         with C.session() as S:
             product = S.doc_by_view('product/by_code',key=self.id)
             products = S.docs_by_view('product/by_master_photo',key=product['photo']['ref'])
         result.update( {'product': product, 'products': products} )
-        prev, next = get_prev_next(product['photo']['ref'], result['opdict'])
+        prev, next = photoengine.get_prev_next(product['photo']['ref'], result['opdict'])
         result.update({'prev': prev, 'next': next})
         return result
 

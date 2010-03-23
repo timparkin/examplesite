@@ -36,7 +36,7 @@ class PhotoEngine(object):
         return self._photos_from_products(self._search_products(facet, category))
 
     def _search_products(self, facet, category):
-        # Use an appropriate couch search to get all of the products that match the filters.. 
+        # Use an appropriate couch search to get all of the products that match the filters..
         # returns a couchdb result set
         if category:
             category_segments = category.split('.')
@@ -54,7 +54,7 @@ class PhotoEngine(object):
         else:
             if facet is None:
                 print 'type only'
-                startkey = [self.type] 
+                startkey = [self.type]
                 endkey = [self.type] + [{}]
                 with self.couchish.session() as S:
                     results_with_dupes= unwrap_docs(S.view('product/by_type_and_location_category',include_docs=True,startkey=startkey,endkey=endkey))
@@ -75,7 +75,7 @@ class PhotoEngine(object):
             if result.doc['photo']['_ref'] not in photo_ids:
                 photo_ids.add(result.doc['photo']['_ref'])
                 products_by_photo[result.doc['photo']['_ref']] = result.doc['code']
-        
+
         # Build a list of unique photos which include a key 'product_code' to point to original product
         with self.couchish.session() as S:
             results_with_dupes= S.view('photo/all',include_docs=True,keys=list(photo_ids))
@@ -137,11 +137,41 @@ class PhotoEngine(object):
         self.cache.update([categories])
         return categories['data']
 
-        
 
+def get_result(self, request):
+    filter = request.GET.get('filter')
+    cache_db = request.environ['cache']
+    cache_id = cache.key('photos',self.type, self.facet, self.category, filter)
+    cache_result = cache_db.get(cache_id)
+    P = photoengine.PhotoEngine(request)
+    if cache_result:
+        result = cache_result['data']
+    else:
+        result = P.search_products(self.facet, self.category)
+        result.update( {'type': self.type, 'facet': self.facet, 'category': self.category} )
+        photolist = photoordering.PhotoList()
+        photolist.add(result['photos'])
+        ordered_photos = photolist.process()
+        result['opdict'] = [[p.photodict for p in row] for row in ordered_photos]
+        cache_db.update( [ {'_id': cache_id, 'data': result} ] )
+    p = paged_list(request, result['opdict'], max_pagesize=5)
+    page_of_ordered_photos = p['items']
+    result.update( {'p':Paging(request,p), 'rows': page_of_ordered_photos} )
+    allcategories = P.categories()
+    result.update( {'allcategories': allcategories} )
 
-        
-            
+    return result
 
-
-
+def get_prev_next(id, rows):
+    prev = next = None
+    all_photos = []
+    for row in rows:
+        for p in row:
+            all_photos.append(p)
+    for n,p in enumerate(all_photos):
+        if p['ref'] == id:
+            if n-1 >= 0:
+                prev = all_photos[n-1]['product_code']
+            if n+1 < len(rows):
+                next = all_photos[n+1]['product_code']
+    return prev, next
