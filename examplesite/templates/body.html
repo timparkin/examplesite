@@ -26,7 +26,7 @@ sitemap = create_sitemap(yaml.load(sitemap_yaml))
 #### TEMPLATE #############################
 <div id="page">
 
-  <header>
+  <header id="masthead">
     <h1>Ian McCarthy</h1>
     <nav>
 ${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
@@ -35,7 +35,7 @@ ${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
 
 ${next.body()}
 
-  <footer>
+  <footer class="grid_12">
     &copy; Ian McCarthy 2008
   </footer>
 
