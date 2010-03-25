@@ -52,13 +52,17 @@ def get_prev_next(id, rows):
 
 class Gallery(base.BasePage):
 
-    def __init__(self, type):
+    def __init__(self, type=None):
         self.type = type
 
     @resource.child('{facet}')
     def facet(self, request, segments, facet=None):
         return Facet(self.type, facet)
 
+    @resource.GET()
+    @templating.page('/gallery/home.html')
+    def get(self, request):
+        return {}
 
 class Facet(base.BasePage):
 

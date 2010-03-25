@@ -86,6 +86,10 @@ class RootResource(base.BasePage):
     def photos(self, request, segments):
         return gallery.Gallery('photo')
 
+    @resource.child()
+    def gallery(self, request, segments):
+        return gallery.Gallery()
+
     @resource.child('filehandler')
     def filehandler(self, request, segments):
         cdbfilestore = CouchDBAttachmentSource(request.environ['couchish'])
