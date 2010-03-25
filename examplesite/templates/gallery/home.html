@@ -3,11 +3,6 @@
 from menuish.menu import Navigation
 import urllib
 %>
-<%namespace name="paging" file="/paging.html"/>
-<%
-from examplesite import who
-identity = who.get_identity(request)
-%>
 
 <%def name="body_class()"> galleryhome</%def>
 
@@ -22,6 +17,7 @@ identity = who.get_identity(request)
     <a href="/photos/location/england.northumberland.coast"><img src="http://jcassets.timparkin.co.uk/images/promopanel-galleryhome.png"/></a>
   </div>
 </div>
+
 <hr />
 
 <div class="container" id="gallerymenu">
@@ -60,5 +56,7 @@ identity = who.get_identity(request)
       <p><a href="/photos/subject?filter=Print">Search all products for a particular genre.</a></p>
     </div>
   </div>
+
 </div>
+
 <%def name="title()">Landscape Photography from Yorkshire, Scotland and beyond..</%def>

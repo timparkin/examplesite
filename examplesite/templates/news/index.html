@@ -1,0 +1,45 @@
+<%!
+from adminish import md
+from menuish.menu import Navigation, create_sitemap
+%>
+<%namespace name="paging" file="/newspaging.html"/>
+<%namespace name="lib" module="examplesite.lib.makolib" />
+##---------- Prepare Data
+<%
+if '~' in page['body']:
+    cs = [c for c in page['body'].split('~') if c != '']
+    body = '<div class="firstcolumn">%s</div><div class="column">%s</div>'%(md.md(cs[0]),md.md(cs[1]) )
+else:
+    body = md.md(page['body'])
+%>
+##---------- Definitions
+
+<%def name="title()">Landscape Photography News from the Joe Cornish Gallery</%def>
+<%def name="body_class()"> page</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      ${Navigation(item_class=['firstlast','number'], openall=True, startdepth=1, showroot=False).render_navigation(sitemap, request)|n}
+    </div>
+  </div>
+  <div class="main">
+    <h2>${page['title']}</h2>
+    ${body|n}
+    % for newsitem in newsitems:
+    <div class="newsitem">
+      <h2>${newsitem['title']}</h2>
+      <h3>${lib.strford(newsitem['date'], 'dmy')}</h3>
+      <p>${newsitem['summary']} <a href="${urls.path_qs.child(newsitem['_id'])}">more</a></p>
+    </div>
+    % endfor
+    ${paging.paging(p)}
+
+  </div>
+</div>
+
+

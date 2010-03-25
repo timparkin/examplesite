@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <style type="text/css">
+      .formish-form {
+        width: 700px;
+        margin: 10px auto 0 auto;
+        text-align: center;
+      }
+    
+    </style>
+    <script>
+    function submitForm(){
+      document.getElementById('autosubmitform').submit()
+    }
+    </script>
+
+  </head>
+  <body style="background-color:#DBD9D4;" onload="setTimeout('submitForm()',1000);">
+    <div style="margin: 100px auto 0 auto; font-family: Palatino Linotype,Book Antiqua,Palatino,serif; font-size: 160%; width: 700px" >You are being forwarded to our secure payment page</div>
+    ${form()|n}
+  </body>
+</html>

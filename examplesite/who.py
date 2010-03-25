@@ -27,9 +27,6 @@ class Identity(object):
         """
         Check that the identity includes the given permission.
         """
-        print 'self.permissions',self.permissions
-        print 'checking for permission',permission
-        print 'has_permissions',roles.join_permission('*', permission)
         return roles.join_permission('*', permission) in self.permissions
 
     def has_any_permission(self, permission):

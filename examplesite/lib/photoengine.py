@@ -36,6 +36,8 @@ class PhotoEngine(object):
         return self._photos_from_products(self._search_products(facet, category))
 
     def _search_products(self, facet, category):
+        # Use an appropriate couch search to get all of the products that match the filters.. 
+        # returns a couchdb result set
         if category:
             category_segments = category.split('.')
         if self.type is None:
@@ -67,10 +69,14 @@ class PhotoEngine(object):
     def _photos_from_products(self, results_with_dupes):
         products_by_photo = {}
         photo_ids = set()
+        # From the list of products, build a unique set in 'photo_ids'
+        # also create an index from photo code to product
         for result in results_with_dupes:
             if result.doc['photo']['_ref'] not in photo_ids:
                 photo_ids.add(result.doc['photo']['_ref'])
                 products_by_photo[result.doc['photo']['_ref']] = result.doc['code']
+        
+        # Build a list of unique photos which include a key 'product_code' to point to original product
         with self.couchish.session() as S:
             results_with_dupes= S.view('photo/all',include_docs=True,keys=list(photo_ids))
         photos = []
@@ -81,6 +87,8 @@ class PhotoEngine(object):
                 master_photos.add(result.doc['code'])
                 result.doc['product_code'] = products_by_photo.get(result.doc['_id'],result.doc['code'])
                 photos.append(_dictify_photo(result.doc))
+
+        # Build the categories covered by these photos
         location_categories = {}
         subject_categories = {}
         photos = list(photos)

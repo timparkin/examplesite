@@ -1,0 +1,38 @@
+<%def name="rangefragment(range, pos)">
+% if range is not None:
+  %if len(range) != 0:
+      <div id="paging-range-${pos}">
+  % for r in range:
+  % if 'url' in r:
+        <span class="range" ><a href="${r['url']}">${r['label']}</a></span>
+  % else:
+        <span class="range" >${r['label']}</span>
+  % endif
+  % endfor
+      </div>
+  % endif
+% endif
+</%def>
+
+<%def name="next(p)">
+% if p.has_next: 
+<a href="${p.next}">older</a> 
+% endif
+</%def>
+
+<%def name="prev(p)">
+% if p.has_prev: 
+<a href="${p.prev}">newer</a> 
+% endif
+</%def>
+
+<%def name="paging(p)">
+<div id="paging">
+  <div id="paging-next">
+    ${next(p)}
+  </div>
+  <div id="paging-prev">
+    ${prev(p)}
+  </div>
+</div>
+</%def>
