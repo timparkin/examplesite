@@ -8,98 +8,58 @@ type_labels = {
 }
 %>
 
-<%def name="body_class()"> shop</%def>
+<%def name="body_class()"> gallery</%def>
 
-<%
-def selected(var, match):
-  v = request.GET.get(var)
-  if v == match:
-      return ' class="selected"'
-  return ''
-%>
 
-<div class="container">
-  <div class="leftpanel photo">
-<%
-header = ''
-product = request.GET.get('filter')
-if product == 'Print':
-    header = header + 'Photos with Prints'
-elif product == 'Greetings Card':
-    header = header + 'Photos with Greetings Cards'
-else:
-    header = header + 'All photos'
-if type == 'location':
-    header = header + ' by Location'
-elif type == 'subject':
-    header = header + ' by Genre'
-%>  
-<h2>${header}</h2>
+<section class="panel grid_3 leftcolumn">
+  <h1>Galleries</h1>
+  <nav class="categories">
+    ${categorylib.render_subtree(allcategories[facet]['tree'], section='uk')}
+  </nav>
+</section>
 
-    <div class="details categories">
-% if facet == 'location':
-      <h3 style="margin-left: 10px">United Kingdom</h3>
-      ${categorylib.render_subtree(allcategories[facet]['tree'], depth=0, section='uk')}
-      <h3 style="margin-left: 10px">Overseas</h3>
-      ${categorylib.render_subtree(allcategories[facet]['tree'], depth=0, section='overseas')}
-      <h4><a href="${urls.new('/photos/subject').add_query('filter',product)}">View By Genre</a></h4>
-% else:
-    ${categorylib.render_subtree(allcategories[facet]['tree'])}
-    
-    <h4><a href="${urls.new('/photos/location').add_query('filter',product)}">View By Location</a></h4>
-% endif
+<section class="panel grid_9">
+
+  <h1><a href="/news">Landscape &amp; Light</a></h1>
+
+    <div class="paging">
+    ${paging.paging(p)}
+    ${paging.stats(p,len(photos))}
     </div>
-  </div>
-  <div class="main">
 
-<div id="photos" class="clearfix">
-${paging.stats(p,len(photos))}
-${paging.paging(p)}
+    <div class="photos clearfix">
+      <article class="photo">
+        <a href="#"><img src="/examples/1.png" /></a>
+        <h1>Antelope Canyon Crack</h1>
+      </article>
+      <article class="photo">
+        <a href="#"><img src="/examples/2.png" /></a>
+        <h1>Bryce Canyon Dawn</h1>
+      </article>
+      <article class="photo">
+        <a href="#"><img src="/examples/3.png" /></a>
+        <h1>Morning Alert</h1>
+      </article>
+      <article class="photo">
+        <a href="#"><img src="/examples/4.png" /></a>
+        <h1>Goldfinch Harvest</h1>
+      </article>
+      <article class="photo">
+        <a href="#"><img src="/examples/5.png" /></a>
+        <h1>Feeling Blue Tit</h1>
+      </article>
+    </div>
 
-<div class="page">
-  % for row in rows:
-  <div class="productrow">
-% for n,P in enumerate(row):
-% if P:
-<%
-photo = P
-count_class = ''
-if n == 2:
-    count_class = ' last'
-width = photo['photo']['metadata']['width']
-height = photo['photo']['metadata']['height']
-id = photo['photo']['id']
-ref = photo['photo']['doc_id']
-product_code = products_by_photo[ref].replace('/','|')
-elementwidth = int(float(259)*width/height)
-def add_pageref(url):
-    values = [value for name, value in urls.url.query_list if name == 'pageref']
-    if values:
-        url = url.add_query('pageref',values[0]) 
-    values = [value for name, value in urls.url.query_list if name == 'filter']
-    if values:
-        url = url.add_query('filter',values[0]) 
-    return url
-u = urls.new('/%s/%s'%('photos','/'.join(urls.path_qs.split('/')[2:])))
 
-%>
-<div class="product${count_class}">
-  <a href="${add_pageref(u.child(product_code))}"><img src="/filehandler/${ref}/${id}?size=2000x259" /></a>
-  <a href="${add_pageref(u.child(product_code))}" style="width: ${elementwidth}px; display: block">${photo['title']}<br />${product_code}</a>
-</div>
-% endif
-% endfor
-</div>
-% endfor
-<div class="clearfix" id="bottom">
-  ${paging.stats(p,len(photos))}
-  ${paging.paging(p)}
-</div>
 
-</div>
-</div>
-</div>
-</div>
+
+    <div class="paging">
+    ${paging.paging(p)}
+    ${paging.stats(p,len(photos))}
+    </div>
+
+</section>
+
 
 
 <%def name="title()">Shop List!</%def>

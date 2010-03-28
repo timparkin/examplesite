@@ -1,6 +1,8 @@
 from couchfti import query
 from examplesite.lib.categories import mktree
-from examplesite.lib import cache
+from examplesite.lib import cache, photoordering
+
+from pagingish.webpaging import Paging, paged_list
 
 def unwrap_doc(doc):
     if hasattr(doc, '__subject__'):
@@ -143,8 +145,8 @@ def get_result(self, request):
     cache_db = request.environ['cache']
     cache_id = cache.key('photos',self.type, self.facet, self.category, filter)
     cache_result = cache_db.get(cache_id)
-    P = photoengine.PhotoEngine(request)
-    if cache_result:
+    P = PhotoEngine(request)
+    if cache_result and 1==0:
         result = cache_result['data']
     else:
         result = P.search_products(self.facet, self.category)

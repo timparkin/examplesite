@@ -1,20 +1,7 @@
 <%!
 from pagingish.couchdbpager import Pager
-%><%def name="rangefragment(range, pos)">
-% if range is not None:
-  %if len(range) != 0:
-      <div id="paging-range-${pos}">
-  % for r in range:
-  % if 'url' in r:
-        <span class="range" ><a href="${r['url']}">${r['label']}</a></span>
-  % else:
-        <span class="range" >${r['label']}</span>
-  % endif
-  % endfor
-      </div>
-  % endif
-% endif
-</%def>
+%>
+
 
 <%def name="next(p)">
 % if p.has_next: 
@@ -29,23 +16,12 @@ from pagingish.couchdbpager import Pager
 </%def>
 
 <%def name="paging(p)">
-<div id="paging">
-  <div id="paging-next">
+  <div class="paging-next">
     ${next(p)}
   </div>
-  <div id="paging-prev">
+  <div class="paging-prev">
     ${prev(p)}
   </div>
-</div>
-</%def>
-
-<%def name="alphanum_jumpref()">
-<ul>
-  <li><a href="${urls.path_qs.replace_query('pageref',Pager.jumpref('0'))}">0-9</a></li>
-  % for a in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-  <li><a href="${urls.path_qs.replace_query('pageref',Pager.jumpref(a))}">${a}</a></li>
-  % endfor
-</ul>
 </%def>
 
 <%def name="stats(p, item_count=None)">
@@ -68,6 +44,6 @@ if item_count is not None:
 page_and_item_count =  '%s [%s]' % (page, item_count)
 %>
 % if len(page_and_item_count) > 1:
-<div id="paging-numresults">${page_and_item_count}</div>
+<div class="paging-numresults">${page_and_item_count}</div>
 % endif
 </%def>

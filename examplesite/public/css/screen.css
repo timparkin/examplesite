@@ -173,51 +173,51 @@ input, select {
 ----------------------------------------------------------------------------------------------------*/
 
 #page .grid_1 {
-  width:60px;
+  width:63px;
 }
 
 #page .grid_2 {
-  width:140px;
+  width:146px;
 }
 
 #page .grid_3 {
-  width:220px;
+  width:232px;
 }
 
 #page .grid_4 {
-  width:300px;
+  width:313px;
 }
 
 #page .grid_5 {
-  width:380px;
+  width:398px;
 }
 
 #page .grid_6 {
-  width:460px;
+  width:481px;
 }
 
 #page .grid_7 {
-  width:540px;
+  width:564px;
 }
 
 #page .grid_8 {
-  width:620px;
+  width:647px;
 }
 
 #page .grid_9 {
-  width:700px;
+  width:730px;
 }
 
 #page .grid_10 {
-  width:780px;
+  width:803px;
 }
 
 #page .grid_11 {
-  width:860px;
+  width:896px;
 }
 
 #page .grid_12 {
-  width:940px;
+  width:979px;
 }
 
 
@@ -468,7 +468,7 @@ body {
 }
 
 #page {
-  width: 1000px;
+  width: 1010px;
   margin: 0 auto 0 auto;
   position: relative;
 }
@@ -492,27 +492,43 @@ h1 a {
   margin: 40px 0 20px 0;
 }
 
-nav {
+#masthead nav {
   position: absolute;
   top: 10px;
-  right: 0;
+  right: 20px;
 }
 
-nav ul li {
+#masthead nav ul li {
   font-size: 16px;
   font-family: Skia;
+  font-style: italic;
   display: inline;
   list-style-type: none;
   margin-left: 20px;
 }
 
-nav ul li a {
+#masthead nav ul li a {
   text-decoration: none;
   color: #89775D;
 }
 
-nav ul li.selected a {
+#masthead nav ul li.selected a {
   color: #DABD94;
+}
+
+nav.categories {
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.05em;
+  font-family: skia;
+}
+
+nav.categories li {
+  margin-bottom: 3px;
+}
+nav.categories a {
+  text-decoration: none;
+  color: #BBB;
 }
 
 section.panel h1 {
@@ -530,3 +546,61 @@ article.news h1 {
  color: #CCC;
 }
 
+
+.gallery .leftcolumn {
+  margin-top: 40px;
+}
+
+.paging, .paging-numresults {
+  font-size: 12px;
+}
+
+.paging {
+  width: 100%;
+  position: relative;
+}
+
+.paging-next,
+.paging-prev {
+  position: absolute;
+  width: 35px;
+}
+.paging-prev {
+  left: 0;
+}
+.paging-next {
+  left: 50px;
+}
+.paging-numresults {
+  position: absolute;
+  width: 300px;
+  left: 100px
+}
+.paging-prev a {
+  background: transparent url(/images/paging-prev.png) 0 0 no-repeat;
+  text-indent: -1000em;
+  width: 35px;
+  height: 18px;
+  display: block;
+}
+.paging-next a {
+  background: transparent url(/images/paging-next.png) 0 0 no-repeat;
+  text-indent: -1000px;
+  width: 35px;
+  height: 18px;
+  display: block;
+  overflow: hidden;
+}
+
+.photos {
+  margin-top: 40px;
+}
+.photos article.photo {
+  margin: 0 10px 40px 0;
+  float: left;
+}
+
+.photos article.photo h1 {
+  font-size: 20px;
+  text-align: left;
+}
