@@ -1,0 +1,39 @@
+<%!
+from adminish import md
+from menuish.menu import Navigation, create_sitemap
+%>
+##---------- Prepare Data
+<%
+if '~' in page['body']:
+    cs = [p for p in page['body'].split('~') if p != '']
+    body = '<div class="firstcolumn">%s</div><div class="column">%s</div>'%(md.md(cs[0]),md.md(cs[1]) )
+else:
+    body = md.md(page['body'])
+%>
+##---------- Definitions
+
+<%def name="title()">Contact Joe Cornish - Landscape Photographer</%def>
+
+##---------- Start of HTML
+
+<%inherit file="/body.html" />
+
+<div class="container">
+  <div class="leftcolumn">
+    <div id="subnav">
+      ${body|n}
+    </div>
+  </div>
+  <div class="main">
+    <h1>${page['title']}</h1>
+% if identity and identity.is_admin():
+<div class="admin">
+  <a href="/admin/page/${page['_id']}">Edit Page</a>
+</div>
+% endif
+    ${form()|n}
+  </div>
+</div>
+
+
+
