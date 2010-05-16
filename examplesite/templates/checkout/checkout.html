@@ -11,8 +11,8 @@
 <div class="container">
   <div class="leftcolumn">
     <div id="subnav">
-      <h2>Check Addresses</h2>
-      <p>We've filled out the address details from those you have when you registered your account with us. If you are happy with them, you may click checkout at the bottom of the form immediatly. You may change the details before continuing if you wish</p>
+      <h2>Personal and delivery information</h2>
+      <p>Please complete</p>
     </div>
   </div>
   <div class="main">
@@ -27,8 +27,6 @@
     ${form['filename']()|n}
     ${form['secuitems']()|n}
     ${form['shreference']()|n}
-    ${form['cardholdersname']()|n}
-    ${form['deliveryname']()|n}
     ${form['transactioncurrency']()|n}
     ${form['products_price']()|n}
     ${form['shippingcharge']()|n}
@@ -36,6 +34,7 @@
     ${form['transactionamount']()|n}
 
     <h4>Contact Details</h4>
+    ${form['cardholdersname']()|n}
     ${form['cardholdersemail']()|n}
     ${form['cardholdersphonenumber']()|n}
 
@@ -49,6 +48,7 @@
     ${form['billing_postcode']()|n}
     ${form['billing_country']()|n}
     <h4>Delivery Address</h4>
+    ${form['deliveryname']()|n}
     ${form['delivery_street1']()|n}
     ${form['delivery_street2']()|n}
     ${form['delivery_street3']()|n}
