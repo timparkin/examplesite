@@ -4,14 +4,10 @@
 import yaml
 from menuish.menu import Navigation, create_sitemap
 sitemap_yaml = """
-- [root, Home, 1, {}]
-- [root.gallery,Gallery/Shop, 2, {}]
-- [root.visit,Visit Us, 3, {}]
-- [root.news,News, 4, {}]
-- [root.about,About, 5, {}]
-- [root.workshops,Workshops, 6, {}]
-- [root.basket,Basket, 7, {}]
-- [root.contact,Contact, 8, {}]
+- [root, home, 1, {}]
+- [root.about,about, 2, {}]
+- [root.services,services, 3, {}]
+- [root.contact,contact, 4, {}]
 """
 sitemap = create_sitemap(yaml.load(sitemap_yaml))
 %>
@@ -27,16 +23,19 @@ sitemap = create_sitemap(yaml.load(sitemap_yaml))
 <div id="page">
 
   <header id="masthead">
-    <h1>Ian McCarthy</h1>
-    <nav>
-${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
-    </nav>
+    <h1>Optimum Exposure - Internet Marketing and Social Media</h1>
   </header>
+
+  <nav>
+${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
+  </nav>
 
 ${next.body()}
 
   <footer class="grid_12">
-    &copy; Ian McCarthy 2008
+    Optimum Exposure is a trading name of Republic of Yorkshire Ltd, a company
+    registered in England and Wales . Registered Number: 6813370.  Registered
+    Office: Technology House, 237 Lidgett Lane, Leeds, LS17 6QR  
   </footer>
 
 </div>

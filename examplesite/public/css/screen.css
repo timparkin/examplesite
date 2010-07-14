@@ -138,11 +138,11 @@ input, select {
 /* Grid >> Children (Alpha ~ First, Omega ~ Last)
 ----------------------------------------------------------------------------------------------------*/
 
-.alpha {
+.first {
   margin-left: 0;
 }
 
-.omega {
+.last {
   margin-right: 0;
 }
 
@@ -437,22 +437,27 @@ input, select {
 
 
 body {
-  font-size: 12px
-  line-height: 21px;
-  color: #999;
-  font-family: 'BodoniSvtyTwoSCITCTTBook', georgia, serif;
-  background: #333 url(/images/bg/background.png);
+  font-size: 17px;
+  line-height: 1.5em;
+  color: #555;
+  font-family: 'BodoniSvtyTwoITCTTBook', georgia, serif;
+  background: #000 url(/images/bg/background.png);
+
 }
 
 #page {
   width: 990px;
+  background-color: #FFF;
   margin: 0 auto 0 auto;
   position: relative;
+  min-height:500px;
+  height:auto !important;
+  height:500px;
 }
 
 
 h1 {
-  font-size: 40px;
+  font-size: 20px;
   font-family: 'BromwichAlternateRegular', georgia, serif;
   color: #265D91;
   font-weight: normal;
@@ -465,24 +470,65 @@ h1 a {
 
 nav {
   position: absolute;
-  top: 10px;
-  right: 0;
+  top: 126px;
+  right: 772px;
+  line-height: 1.7em;
 }
 
 nav ul li {
-  font-size: 16px;
-  font-family: Skia;
-  display: inline;
+  font-size: 19px;
+  font-family: 'BromwichAlternateRegular', georgia, serif;
   list-style-type: none;
-  margin-left: 20px;
+  text-align: right;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #89775D;
+  color: #928286;
+  padding-right: 0.4em;
 }
 
 nav ul li.selected a {
-  color: #DABD94;
+  color: #4E7BA5;
+  padding-right: 0em;
+
 }
 
+nav ul li.selected:after {
+  font-size: 19px;
+  content:' }';
+  color: #4E7BA5;
+  vertical-align: -2px;
+}
+
+#masthead {
+  background: url('/images/bg/airmail-header.png') no-repeat;
+  height: 126px;
+}
+
+#masthead h1 {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  width: 337px;
+  height: 65px;
+  overflow: hidden;
+  text-indent: -100em;
+  background-image: url('/images/graphic/logo.png');
+
+}
+
+footer {
+  font-size: 11px;
+  font-family: 'BodoniSvtyTwoITCTTBook', georgia, serif;
+  color: #666;
+  padding-left: 240px;
+  width: 630px !important;
+  display: block;
+  line-height: 1.3em;
+  
+}
+
+section p {
+  margin-bottom: 0.7em;
+}
