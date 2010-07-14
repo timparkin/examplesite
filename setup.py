@@ -22,6 +22,10 @@ setup(name='examplesite',
           'adminish',
           'commerce',
           'notification',
+          'pastescript',
+          'weberror',
+          'repoze.who',
+          'couchdb<0.7',
       ],
       entry_points="""
       # -*- Entry points: -*-

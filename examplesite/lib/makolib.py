@@ -36,11 +36,3 @@ def strfrange(ctx, f,t):
         return '%s to %s %s'%(strford(ctx,f,'dm'), strford(ctx,t,'dm'), f.strftime('\'%y'))
     return '%s to %s'%(strford(ctx,f,'dmy'), strford(ctx,t,'dmy'))
 
-def get_size_tuple(ctx, product, option):
-    photo = product['photo']
-    size = option['label'].split(' ')[0]
-    size = size.replace('X','x')
-    long, short = size.split('x')
-    long = int(long[:-1])
-    short = int(short[:-1])
-    return (long, short), '%0.0f'%float(long), '%0.0f'%(float(short))

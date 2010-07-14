@@ -1,26 +1,3 @@
-/*
- Font Face definitions
-*/
-
-@font-face{ /* for IE */
-    font-family:CasinoHand;
-      src:url(/fonts/CasinoHand.eot);
-}
-@font-face { /* for non-IE */
-    font-family:CasinoHand;
-      src:url(//:) format("No-IE-404"),url(/fonts/CasinoHand.ttf) format("truetype");
-}
-
-@font-face{ /* for IE */
-    font-family:Skia;
-      src:url(/fonts/Skia.eot);
-}
-@font-face { /* for non-IE */
-    font-family:Skia;
-      src:url(//:) format("No-IE-404"),url(/fonts/Skia.ttf) format("truetype");
-}
-body {
-}
 /* 
 html5doctor.com Reset Stylesheet
 v1.4.1 
@@ -463,12 +440,12 @@ body {
   font-size: 12px
   line-height: 21px;
   color: #999;
-  font-family: arial, verdana;
-  background: #333 url(/images/bg/1280-dropshadow-bg.png) repeat-y center;
+  font-family: 'BodoniSvtyTwoSCITCTTBook', georgia, serif;
+  background: #333 url(/images/bg/background.png);
 }
 
 #page {
-  width: 1000px;
+  width: 990px;
   margin: 0 auto 0 auto;
   position: relative;
 }
@@ -476,20 +453,14 @@ body {
 
 h1 {
   font-size: 40px;
-  line-height: 1.05em;
-  font-family: CasinoHand;
-  color: #DABD94;
-  font-style: italic;
+  font-family: 'BromwichAlternateRegular', georgia, serif;
+  color: #265D91;
   font-weight: normal;
 }
 
 h1 a {
   text-decoration: none;
-  color: #DABD94;
-}
-
-#masthead {
-  margin: 40px 0 20px 0;
+  color: #265D91;
 }
 
 nav {
@@ -513,20 +484,5 @@ nav ul li a {
 
 nav ul li.selected a {
   color: #DABD94;
-}
-
-section.panel h1 {
-  font-size: 34px;
-}
-
-article.photo h1 {
-  text-align: right;
-  font-size: 30px;
-}
-
-article.news h1 {
- font-size: 20px;
- font-family: Skia;
- color: #CCC;
 }
 
