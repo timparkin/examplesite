@@ -456,6 +456,9 @@ body {
   min-height:500px;
   height:auto !important;
   height:500px;
+  -moz-box-shadow: 0px -40px 40px #444; /* Firefox F3.5+ */
+  -webkit-box-shadow: 0px -40px 40px #444; /* Safari3.0+, Chrome */
+  box-shadow: 0px -40px 40px #444; /* Opera 10.5, IE 9.0 */
 }
 
 
