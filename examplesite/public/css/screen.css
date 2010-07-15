@@ -681,9 +681,9 @@ section p {
  {
   background-color:transparent;
   color: #000;
-  border-color:-moz-use-text-color -moz-use-text-color #CCCCCC;
+  border-color: #CCCCCC;
   border-style:none none dashed;
-  border-width:medium medium 0.0714em;
+  border-width:medium medium 1px;
   font-family: georgia, serif;
   font-style:normal;
   font-weight:normal;
@@ -693,9 +693,9 @@ section p {
 #contact-message {
   background-color: #F3F9FA;
   padding: 5px 20px;
-  border-color:-moz-use-text-color -moz-use-text-color #CCCCCC;
+  border-color: #CCCCCC;
   border-style:none none dashed;
-  border-width:medium medium 0.0714em;
+  border-width:medium medium 1px;
   width: 450px
   
 }
