@@ -57,8 +57,10 @@ class RootResource(base.BasePage):
         page = results[0].doc
         sitemap = navigation.get_navigation(request)
         form = get_contact_form()
+        socialmedia = C.db['socialmedia']
         data = {'page': page, 'request': request, 'sitemap': sitemap,
-                'news':news, 'form': form}
+                'news':news, 'form': form, 'blog': socialmedia['blog'],
+                'twitter': socialmedia['twitter']}
         out = templating.render(request, '/page-templates/%s'%page['template'], data, encoding='utf-8')
         return http.ok([('Content-Type', 'text/html')], out)
 
