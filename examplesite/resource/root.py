@@ -5,6 +5,8 @@ import adminish
 from datetime import date
 
 from wsgiapptools import flash
+import formish, schemaish
+from validatish import validator
 from formish.fileresource import FileResource
 from formish.filestore import CachedTempFilestore, FileSystemHeaderedFilestore
 
@@ -13,10 +15,20 @@ from examplesite.lib import base, guard
 
 from examplesite.lib.filestore import CouchDBAttachmentSource
 
-
-
-
 log = logging.getLogger(__name__)
+
+class ContactSchema(schemaish.Structure):
+    """ A simple sommets form """
+    email = schemaish.String(validator=validator.All(validator.Required(), validator.Email()))
+    name = schemaish.String(validator=validator.Required())
+    message = schemaish.String()
+
+def get_contact_form():
+    """ Creates a form and assigns a widget """
+    form = formish.Form(ContactSchema(),name="contact",add_default_action=False)
+    form.add_action(name='submit', value='Click Here to Send')
+    form['message'].widget = formish.TextArea()
+    return form
 
 def send_email(request, email, template_name):
     notification = request.environ['notification']
@@ -44,7 +56,9 @@ class RootResource(base.BasePage):
         news = [n for n in news if n.get('date') and n['date'] < date.today()]
         page = results[0].doc
         sitemap = navigation.get_navigation(request)
-        data = {'page': page, 'request': request, 'sitemap': sitemap, 'news':news}
+        form = get_contact_form()
+        data = {'page': page, 'request': request, 'sitemap': sitemap,
+                'news':news, 'form': form}
         out = templating.render(request, '/page-templates/%s'%page['template'], data, encoding='utf-8')
         return http.ok([('Content-Type', 'text/html')], out)
 
@@ -86,7 +100,9 @@ class PageResource(base.BasePage):
         with C.session() as S:
             results = list(S.view('page/by_url',key=url,include_docs=True))
         page = results[0].doc
-        data = {'page': page,'request':request, 'sitemap':sitemap}
+        form = get_contact_form()
+        data = {'page': page,'request':request, 'sitemap':sitemap, 'form':
+                form}
         return templating.render_response(request, self, '/page-templates/%s'%page['template'], data)
 
 

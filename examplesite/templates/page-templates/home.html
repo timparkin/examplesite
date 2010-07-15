@@ -73,17 +73,40 @@ from adminish import md
 <section class="strongpanel">
 <div class="header"></div>
 <div class="grid_3 first sidebar">
-    Technology House<br/>
-    237 Lidgett Lane<br />
-    Leeds<br />
-    LS17 6QR<br />
-    <div class="phones">
-        tel: 0113 225 2500<br />
-        mob: 07970 280 694
-    </div>
+
+<div class="vcard">
+  <a class="fn org url" href="http://www.optimumexposure.co.uk/">Optimum Exposure</a>
+  <div class="adr">
+    <span class="type">work</span>
+    <div class="street-address">237 Lidgett Lane</div>
+    <div class="locality">Leeds</div>
+    <div class="region">West Yorkshire</div>
+    <div class="postal-code">LS17 6QR</div>
+    <div class="country-name">UK</div>
+  </div>
+  <span class="tel">
+    <span class="type">home</span>:
+    <span class="value">+44 (0) 113 225 2500</span>
+  </span>
+  <span class="tel">
+    <span class="type"><span class="value-title" title="cell"></span>mobile</span>:
+    <span class="value">+44 (0) 7980 280 694</span>
+  </span>
+  <span class="email" href="mailto:info@optimumexposure.co.uk">info@optimumexposure.co.uk</span>
+  </div>
 </div>
-<div class="grid_9 last maincolumn">
-    blog
+
+<div class="grid_9 last maincolumn contactme">
+  <h2>Contact Me</h2>
+  <p>You can use either the email address to the left or the contact form below..</p>
+${form.header()|n}
+${form.metadata()|n}
+<span class="firstline">&ldquo;<label for="name">My name</label> is ${form['name'].widget()|n}</span><br />
+and <label for="email">my email</label> is ${form['email'].widget()|n}<br />
+and <label for="message">my message</label> is <br />
+${form['message'].widget()|n}
+<div id="contact-action"><span>«</span><input type="submit" value="Click Here to Send"  name="submit" id="contact-action-submit" /><span>»</span></div>
+${form.footer()|n}
 </div>
 <div class="footer"></div>
 </section>

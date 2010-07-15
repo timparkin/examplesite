@@ -576,7 +576,7 @@ section p {
 .strongpanel .footer {
   height: 13px;
   width: 990px;
-  margin: 0;
+  margin: 1em 0 0 0;
   padding: 0;
   float: left;
   display: inline;
@@ -640,4 +640,82 @@ section p {
 
 .socialmedia {
   margin: 40px 0 0 58px;
+}
+
+.vcard {
+  font-size: 18px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  line-height: 1.5em;
+}
+.vcard .url {
+  border: 0;
+  color: #444;
+}
+.vcard .tel,
+.vcard .email {
+  font-size: 13px;
+}
+.vcard .adr .type,
+.vcard .adr .country-name,
+.vcard .adr .region
+{
+  display: none;
+}
+.firstline {
+  margin-left: -6px;
+}
+.contactme form {
+  font-family: 'BradleyHandITCRegular', georgia, serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 14px;
+  color: #265D90;
+}
+/* Thanks for huffduffer for the inspiration */
+.contactme form input,
+.contactme form textarea
+ {
+  background-color:transparent;
+  color: #000;
+  border-color:-moz-use-text-color -moz-use-text-color #CCCCCC;
+  border-style:none none dashed;
+  border-width:medium medium 0.0714em;
+  font-family: georgia, serif;
+  font-style:normal;
+  font-weight:normal;
+  font-size: 13px;
+  margin:0 0.5em;
+}
+#contact-message {
+  background-color: #F3F9FA;
+  padding: 5px 20px;
+  border-color:-moz-use-text-color -moz-use-text-color #CCCCCC;
+  border-style:none none dashed;
+  border-width:medium medium 0.0714em;
+  width: 450px
+  
+}
+#contact-name {
+  width: 400px;
+}
+#contact-email {
+  width: 370px;
+}
+#contact-action-submit {
+  font-family:  'BodoniSvtyTwoITCTTBook', georgia, serif;
+  color: #9B4646;
+  border: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 15px;
+}
+#contact-action {
+  font-family:  'BodoniSvtyTwoITCTTBook', georgia, serif;
+  font-style: normal;
+  color: #9B4646;
+  border: 0;
+  text-transform: uppercase;
+  font-size: 17px;
+  margin-left: 100px;
 }
