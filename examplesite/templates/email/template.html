@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Optimum Exposure</title>
+   <style type="text/css" media="screen">
+      body {
+         margin: 0;
+         padding: 0;
+         background-color: #A6A09C;
+      }
+
+      a img {
+         border: none;
+      }
+
+      a {
+         border: none;
+      }
+
+      td.permission {
+         padding: 7px 0 13px 0;
+      }
+
+      .permission {
+         font-family: 'Lucida Grande';
+         font-size: 10px;
+         color: #666666;
+         padding: 4px 0 4px 0;
+      }
+
+      .permission a {
+         color: #333333;
+      }
+
+      .permission p {
+         margin: 0 0 8px 0;
+      }
+
+
+      .header h1 {
+      	font-family: Georgia;
+      	font-size: 32px;
+      	font-weight: normal;
+      	color: #bfbfbf;
+      	display: inline;
+      	text-align: left;
+      }
+
+ 
+      .date h3 {
+      	font-family: Georgia;
+      	font-size: 14px;
+      	color: #bfbfbf;
+      	font-weight: normal;
+      	text-align: right;
+      	display: inline;
+      	font-style: italic;
+      }
+
+      .body {
+         background-color: #ffffff;
+      }
+
+      .mainbar {
+      	font-family: Georgia, 'Lucida Grande';
+      	font-size: 12px;
+      	color: #333333;
+        text-align: left;
+        padding: 0 50px;
+      }
+
+      .mainbar p.first {
+      	margin-top: 10px;
+      }
+
+      .mainbar h1 {
+      	font-family: Arial, sans-serif;
+      	font-size: 17px;
+      	color: #006DBC;
+        margin: 0 0 15px 0;
+      }
+
+      hr {
+        color: #FFFFFF;
+        border-top: 1px dashed #CCCCCC;
+
+      }
+
+      .mainbar h2 {
+      	font-family: Arial, sans-serif;
+      	font-size: 16px;
+      	color: #C26A33;
+      	margin: 0 0 6px 0;
+      }
+
+      .mainbar h2 a {
+      	font-family: Georgia, 'Lucida Grande';
+      	font-size: 16px;
+      	color: #000000;
+      	text-transform: uppercase;
+      	text-decoration: none;
+      	font-style: normal;
+      }
+
+      .mainbar a {
+        font-family: Georgia, 'Lucida Grande';
+      	font-size: 13px;
+      	color: #2679b9;
+      	font-style: italic;
+      }
+
+      .mainbar a.center {
+      	font-size: 12px;
+      	text-align: center;
+      	display: block;
+      	color: #999999;
+      	padding: 8px 0 12px 0;
+      	text-decoration: none;
+      }
+
+      .mainbar img.inline {
+      	border: 1px solid #dedede;
+      	padding: 4px;
+      }
+
+      td.footer {
+      	background-image: url(http://localhost:8080/images/email/email-bg-footer.png);
+        background-repeat: no-repeat;
+        height: 21px;
+        background-position: bottom center;
+      }
+      td.logocell {
+          background-image: url(http://localhost:8080/images/email/email-bg-header.png);
+          padding: 0 50px;
+      }
+      td.logocell h1 {
+          visibility: hidden;
+      }
+      .body {
+         margin-top: 20px;
+         background-image: url(http://localhost:8080/images/email/email-bg-body.png);
+         background-repeat: repeat-y;
+         background-color: #FFFFFF;
+     }
+    dl
+    {
+        float: left;
+        width: 420px;
+        margin: 1em 0;
+        padding: 0;
+        border-bottom: 1px solid #999;
+    }
+
+    dt
+    {
+        clear: left;
+        float: left;
+        width: 150px;
+        margin: 0;
+        padding: 5px;
+        border-top: 1px solid #999;
+        font-weight: bold;
+    }
+
+    dd
+    {
+        float: left;
+        width: 250px;
+        margin: 0;
+        padding: 5px;
+        border-top: 1px solid #999;
+    }
+   </style>
+
+</head>
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="center">
+         <table width="600" cellspacing="0" cellpadding="0" class="body">
+            <tr>
+               <td height="63" class="logocell"></td>
+            </tr>
+            <tr>
+               <td align="left" valign="top" class="mainbar">
+                 ${self.body()}
+                 <br /><br /><br />
+               </td>
+             </tr>
+             <tr><td class="footer" height="21"></td></tr>
+         </table>
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>

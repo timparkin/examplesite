@@ -1,0 +1,3 @@
+multipart/alternative:
+    text/plain: body.txt
+    text/html: body.html
