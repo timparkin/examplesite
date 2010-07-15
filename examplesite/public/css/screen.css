@@ -52,6 +52,9 @@ a {
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
+    color: #3D7DAC;
+    text-decoration: none;
+    border-bottom: 1px dashed #A9CDE6;
 }
 
 ins {
@@ -439,7 +442,7 @@ input, select {
 body {
   font-size: 17px;
   line-height: 1.5em;
-  color: #555;
+  color: #444;
   font-family: 'BodoniSvtyTwoITCTTBook', georgia, serif;
   background: #000 url(/images/bg/background.png);
 
@@ -486,6 +489,7 @@ nav ul li a {
   text-decoration: none;
   color: #928286;
   padding-right: 0.4em;
+  border-bottom: 0;
 }
 
 nav ul li.selected a {
@@ -524,11 +528,107 @@ footer {
   color: #666;
   padding-left: 240px;
   width: 630px !important;
-  display: block;
+  float: left;
+  display: inline;
   line-height: 1.3em;
+  margin: 20px 0;
   
 }
 
 section p {
   margin-bottom: 0.7em;
+}
+
+.softpanel .header {
+  height: 13px;
+  width: 990px;
+  margin: 0 0 1em 0;
+  padding: 0;
+  float: left;
+  display: inline;
+  background: url('/images/bg/sawtooth-top-cream.png') no-repeat;
+}
+.softpanel .footer {
+  height: 13px;
+  width: 990px;
+  margin: 1em 0 0 0;
+  padding: 0;
+  float: left;
+  display: inline;
+  background: url('/images/bg/sawtooth-bottom-cream.png') no-repeat;
+}
+.softpanel {
+  background-color: #F9F9F2;
+  width: 100%;
+  float: left;
+  display: inline;
+}
+
+.strongpanel .header {
+  height: 13px;
+  width: 990px;
+  margin: 0 0 1em 0;
+  padding: 0;
+  float: left;
+  display: inline;
+  background: url('/images/bg/sawtooth-top.png') no-repeat;
+}
+.strongpanel .footer {
+  height: 13px;
+  width: 990px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  display: inline;
+  background: url('/images/bg/sawtooth-bottom.png') no-repeat;
+}
+.strongpanel {
+  background-color: #E8F1F4;
+  width: 100%;
+  float: left;
+  display: inline;
+}
+.sidebar h2 {
+  margin: 0 0 20px 40px;
+  font-size: 20px;
+  color: #3E678D;
+  font-weight: normal;
+  font-family: 'BromwichAlternateRegular', georgia, serif;
+}
+.maincolumn h2 {
+  margin: 0 0 20px 0;
+  font-size: 26px;
+  color: #3E678D;
+  font-weight: normal;
+  font-family: 'BromwichAlternateRegular', georgia, serif;
+}
+.maincolumn h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #754C56;
+  font-weight: normal;
+  font-family: 'BodoniSvtyTwoSCITCTTBook', georgia, serif;
+}
+
+.sidebar article
+{
+  margin: 0 0 0 40px;
+}
+
+.blog .readmore {
+  font-size: 15px;
+  margin-left: 0.6em;
+}
+
+.tweet {
+  font-size: 15px;
+  line-height: 1.4em;
+}
+.tweet p {
+  margin: 10px 0 0 0;
+}
+.tweet time {
+ margin-bottom: 1em;
+ font-size: 13px;
+ color: #888;
 }

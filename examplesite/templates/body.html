@@ -20,7 +20,7 @@ sitemap = create_sitemap(yaml.load(sitemap_yaml))
 
 
 #### TEMPLATE #############################
-<div id="page">
+<div id="page" class="clearfix">
 
   <header id="masthead">
     <h1>Optimum Exposure - Internet Marketing and Social Media</h1>
@@ -32,7 +32,7 @@ ${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
 
 ${next.body()}
 
-  <footer class="grid_12">
+  <footer class="grid_12 first last">
     Optimum Exposure is a trading name of Republic of Yorkshire Ltd, a company
     registered in England and Wales . Registered Number: 6813370.  Registered
     Office: Technology House, 237 Lidgett Lane, Leeds, LS17 6QR  
