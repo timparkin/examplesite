@@ -26,6 +26,8 @@ setup(name='examplesite',
           'weberror',
           'repoze.who',
           'couchdb<0.7',
+          'feedparser',
+          'python-twitter',
       ],
       entry_points="""
       # -*- Entry points: -*-

@@ -19,47 +19,10 @@ from adminish import md
 #### TEMPLATE #############################
 <section class="grid_12 first last">
 <div class="grid_3 first">&nbsp;</div>
-<div class="grid_9 last">
+<div class="grid_9 last content">
     ${md.md(page['body'])|n}
 </div>
 </section>
-
-<section class="softpanel">
-<div class="header"></div>
-<div class="grid_3 first sidebar">
-    <h2>Tweets</h2>
-    % for t in twitter[:2]:
-    <article class="tweet">
-    <p>${t['text']}</p>
-    <time datetime="${t['created_at_datetime']}">${t['relative_created_at']}</time>
-    </article>
-    % endfor
-</div>
-<div class="grid_9 last maincolumn">
-
-  <h2>Blog Extracts</h2>
-    % for b in blog[:2]:
-  <article class="blog">
-  <h3>${b['title']}</h3>
-  <p>${b['summary'][:300]} ... <a href="${b['link']}" class="readmore">read full post</a></p>
-  </article>
-    % endfor
-</div>
-<div class="footer"></div>
-</section>
-
-
-<div class="grid_3 first sidebar">
-    <img src="/images/graphic/socialmedia.png" class="socialmedia" />
-</div>
-<div class="grid_9 last maincolumn">
-  <h2>On The Web</h2>
-  <p>Your online credibility is an increasingly important way of showcasing
-    your specialised knowledge and expertise which will build your online
-    credibility. As more people engage with the social web differentiating
-    yourself become imperative</p>
-</div>
-
 
 <section class="strongpanel">
 <div class="header"></div>
