@@ -669,6 +669,16 @@ section p {
 .firstline {
   margin-left: -6px;
 }
+
+.contactme form ul {
+  font-family:  georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #400;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
 .contactme form {
   font-family: 'BradleyHandITCRegular', georgia, serif;
   font-style: italic;
@@ -725,4 +735,7 @@ section p {
 }
 .content {
   min-height: 400px;
+}
+.path-contact .content {
+  min-height: 200px;
 }

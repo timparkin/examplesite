@@ -25,7 +25,7 @@ class ContactSchema(schemaish.Structure):
 
 def get_contact_form():
     """ Creates a form and assigns a widget """
-    form = formish.Form(ContactSchema(),name="contact",add_default_action=False)
+    form = formish.Form(ContactSchema(),action_url='/contact',name="contact",add_default_action=False)
     form.add_action(name='submit', value='Click Here to Send')
     form['message'].widget = formish.TextArea()
     return form

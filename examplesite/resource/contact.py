@@ -14,18 +14,16 @@ class ContactSchema(schemaish.Structure):
     """ A simple sommets form """
     email = schemaish.String(validator=validator.All(validator.Required(), validator.Email()))
     name = schemaish.String(validator=validator.Required())
-    phone = schemaish.String(title="Phone Number")
-    address = schemaish.String()
-    comment = schemaish.String()
-    optin = schemaish.Boolean(title='Subscribe', description='If you would like to receive information electronically, please tick the box')
+    message = schemaish.String()
+
 
 def get_contact_form():
     """ Creates a form and assigns a widget """
-    form = formish.Form(ContactSchema(),name="contact")
-    form['address'].widget = formish.TextArea()
-    form['comment'].widget = formish.TextArea()
-    form['optin'].widget = formish.Checkbox()
+    form = formish.Form(ContactSchema(),name="contact",add_default_action=False)
+    form.add_action(name='submit', value='Click Here to Send')
+    form['message'].widget = formish.TextArea()
     return form
+
 
 def send_email(request, email, template_name):
     notification = request.environ['notification']
@@ -61,9 +59,9 @@ class ContactResource(base.BasePage):
             return self.html(request, form=form)
         email = {
            'to': 'tim.parkin@gmail.com',
-           'subject': 'Contact for Joe Cornish',
+           'subject': 'Contact from Optimum Exposure (%s)'%data['name'],
            'args': {'data':data},
-           'from': 'orders@joecornish.com',
+           'from': data['email'],
            }
         send_email(request, email, 'Customer/Contact')
         return http.see_other('/contact-thanks')
