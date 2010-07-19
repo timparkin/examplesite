@@ -489,24 +489,52 @@ nav ul li {
   text-align: right;
 }
 
+body nav ul li ul li {
+  font-size: 15px;
+  font-family: georgia, serif;
+  list-style-type: none;
+  text-align: right;
+  color: red;
+}
+
+
 nav ul li a {
   text-decoration: none;
   color: #928286;
-  padding-right: 0.4em;
+  padding-right: 0.7em;
   border-bottom: 0;
 }
 
-nav ul li.selected a {
+nav ul li ul li a {
+  text-decoration: none;
+  color: #928286;
+  margin-right: 1.2em;
+  border-bottom: 0;
+}
+
+
+nav ul li.selected a  {
   color: #4E7BA5;
   padding-right: 0em;
 
 }
 
-nav ul li.selected:after {
+nav ul li.selected a:after, nav ul li.selectedpath a:after {
   font-size: 19px;
   content:' }';
   color: #4E7BA5;
   vertical-align: -2px;
+}
+
+nav ul li.selectedpath a:after, ul li.selected ul li a:after {
+  font-size: 19px;
+  content:'';
+  color: #4E7BA5;
+  vertical-align: -2px;
+}
+
+nav ul li.selected li a {
+  color: #928286;
 }
 
 #masthead {

@@ -3,13 +3,6 @@
 <%!
 import yaml
 from menuish.menu import Navigation, create_sitemap
-sitemap_yaml = """
-- [root, home, 1, {}]
-- [root.about,about, 2, {}]
-- [root.services,services, 3, {}]
-- [root.contact,contact, 4, {}]
-"""
-sitemap = create_sitemap(yaml.load(sitemap_yaml))
 %>
 
 
@@ -27,7 +20,7 @@ sitemap = create_sitemap(yaml.load(sitemap_yaml))
   </header>
 
   <nav>
-${Navigation(showroot=True).render_navigation(sitemap, request)|n,decode.utf8}
+${Navigation(showroot=True, maxdepth=2).render_navigation(sitemap, request)|n,decode.utf8}
   </nav>
 
 ${next.body()}
