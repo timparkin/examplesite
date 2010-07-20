@@ -6,16 +6,9 @@ from operator import itemgetter
 
 
 
+WORKSHOP_CATEGORIES = [('practical','Practical Workshops'),('software','Software Training'),('capture2computer', 'Capture 2 Computer')]
 
-def get_news_nodes(C):
-    with C.session() as S:
-        newsitems = S.docs_by_view('newsitem/all')
-    newsitems = sorted(newsitems,key=itemgetter('date'), reverse=True)
-    nodes = []
-    for newsitem in newsitems:
-        if newsitem['date'] < date.today():
-            nodes.append( ['root.news.%s'%newsitem['_id'],newsitem['menu_title'], 1, {}] )
-    return nodes
+
 
 
 def get_navigation(request):
@@ -39,5 +32,4 @@ def get_navigation(request):
             lastparent = parent
         node = [key,page.value['title'], count, {}]
         sitemap.append(node)
-    sitemap.extend(get_news_nodes(C))
     return create_sitemap(sitemap)
