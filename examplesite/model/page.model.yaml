@@ -28,7 +28,8 @@ fields:
     - name: metadata.description
     - name: metadata.keywords
 
-
+    - name: sort
+      type: Integer
 
 
 views:

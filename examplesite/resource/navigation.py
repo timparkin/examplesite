@@ -6,9 +6,6 @@ from operator import itemgetter
 
 
 
-WORKSHOP_CATEGORIES = [('practical','Practical Workshops'),('software','Software Training'),('capture2computer', 'Capture 2 Computer')]
-
-
 
 
 def get_navigation(request):
@@ -16,6 +13,9 @@ def get_navigation(request):
     C = request.environ['couchish']
     with C.session() as S:
         pages = list(S.view('page/by_segments'))
+        #allpages = list(S.view('page/by_segments'))
+    #pages = [p for p in allpages if p.get('sort')] 
+    #pages.sort(cmp=lambda x,y: cmp(x.get('sort',9999), y.get('sort',9999)), reverse=True)
     count = 0
     lastparent = []
     sitemap = []

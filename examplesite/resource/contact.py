@@ -2,7 +2,7 @@
 import smtplib
 import formish, schemaish
 from validatish import validator
-from restish import resource, templating
+from restish import resource, templating, http
 
 from examplesite.lib import base
 
@@ -58,7 +58,7 @@ class ContactResource(base.BasePage):
         except formish.FormError:
             return self.html(request, form=form)
         email = {
-           'to': 'tim.parkin@gmail.com',
+           'to': 'info@optimumexposure.co.uk',
            'subject': 'Contact from Optimum Exposure (%s)'%data['name'],
            'args': {'data':data},
            'from': data['email'],
