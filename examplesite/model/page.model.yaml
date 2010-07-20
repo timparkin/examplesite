@@ -40,7 +40,7 @@ views:
     function(doc) {
       if (doc.model_type == 'page') {
         var segments = doc.url.split('/');
-        emit(segments.slice(1), {"id":doc._id,"title":doc.title});
+        emit(segments.slice(1), {"id":doc._id,"title":doc.title, "sort": doc.sort});
       }
     }
 
