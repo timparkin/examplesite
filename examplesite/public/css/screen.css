@@ -707,7 +707,10 @@ section p {
   border-color: #CCCCCC;
   border-style:none none dashed;
   border-width:medium medium 1px;
-  width: 450px
+  width: 450px;
+  height: 170px;
+  margin-top: 10px;
+
   
 }
 #contact-name {
