@@ -12,10 +12,12 @@ def get_navigation(request):
     segments = request.url.path_segments
     C = request.environ['couchish']
     with C.session() as S:
-        pages = list(S.view('page/by_segments'))
-        #allpages = list(S.view('page/by_segments'))
-    #pages = [p for p in allpages if p.get('sort')] 
-    #pages.sort(cmp=lambda x,y: cmp(x.get('sort',9999), y.get('sort',9999)), reverse=True)
+        allpages = list(S.view('page/by_segments'))
+    pages = [p for p in allpages if p.value.get('sort') is not None] 
+    pages.sort(cmp=lambda x,y: cmp((len(x.key),x.value.get('sort',9999)),
+                                   (len(y.key),y.value.get('sort',9999))))
+    for p in pages:
+        print len(p.key), p.value
     count = 0
     lastparent = []
     sitemap = []

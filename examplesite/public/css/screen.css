@@ -488,28 +488,34 @@ nav ul li {
   list-style-type: none;
   text-align: right;
 }
+nav ul li ul {
+  margin-top: 10px;
+}
 
 body nav ul li ul li {
-  font-size: 15px;
+  font-size: 13px;
   font-family: georgia, serif;
   list-style-type: none;
   text-align: right;
   color: red;
+  line-height: 1.7em;
 }
 
 
 nav ul li a {
   text-decoration: none;
   color: #928286;
-  padding-right: 0.7em;
+  padding-right: 0.6em;
   border-bottom: 0;
 }
+
 
 nav ul li ul li a {
   text-decoration: none;
   color: #928286;
   margin-right: 1.2em;
   border-bottom: 0;
+  padding-right: 0;
 }
 
 
@@ -535,6 +541,14 @@ nav ul li.selectedpath a:after, ul li.selected ul li a:after {
 
 nav ul li.selected li a {
   color: #928286;
+}
+
+ul li {
+  margin-left: 20px;
+  list-style-type: circle;
+}
+nav ul li {
+  margin-left: 0;
 }
 
 #masthead {
